@@ -9,7 +9,7 @@ import Sidebar from '../Components/Sidebar';
 import useInput from '../hooks/useInput';
 import { __getPosts } from '../redux/modules/posts';
 
-const postUrl = 'http://localhost:3001/posts/'
+const postUrl = 'https://salty-beyond-47708.herokuapp.com/posts/'
 const Home = () => {
     const dispatch = useDispatch()
     const { posts } = useSelector(state => state.posts)
