@@ -6,7 +6,7 @@ import ButtonAction from './ButtonAction';
 import bcrypt from 'bcryptjs';
 import useInput from '../hooks/useInput';
 
-const rootUrl = 'http://localhost:3001/users'
+const rootUrl = 'https://salty-beyond-47708.herokuapp.com/users'
 
 const FormRegister = () => {
     const navigate = useNavigate();

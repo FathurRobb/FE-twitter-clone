@@ -12,8 +12,8 @@ import axios from "axios";
 import useInput from "../hooks/useInput";
 
 
-const postUrl = 'http://localhost:3001/posts/'
-const commentUrl = 'http://localhost:3001/comments/'
+const postUrl = 'https://salty-beyond-47708.herokuapp.com/posts/'
+const commentUrl = 'https://salty-beyond-47708.herokuapp.com/comments/'
 const DetailPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { __getPosts } from "../redux/modules/posts";
 
-const postUrl = 'http://localhost:3001/posts/'
+
 const MyPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()

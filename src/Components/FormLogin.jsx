@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs"
 import { Link, useNavigate } from "react-router-dom";
 import {Form, Container} from 'react-bootstrap';
 
-const rootUrl = 'http://localhost:3001/users'
+const rootUrl = 'https://salty-beyond-47708.herokuapp.com/users'
 
 const FormLogin = () => {
     const navigate = useNavigate();
