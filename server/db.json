@@ -1,7 +1,7 @@
 {
     "posts": [
         {
-            "post": "Test create post",
+            "post": "Test create post asdw",
             "userId": 1,
             "name": "Ilham Fathur Robbani",
             "id": 2
@@ -19,7 +19,25 @@
             "name": "Ilham Fathur Robbani",
             "email": "ilham@gmail.com",
             "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+        },
+        {
+            "id": 2,
+            "name": "Ahmad Hasan Ali",
+            "email": "hasan@gmail.com",
+            "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+        },
+        {
+            "id": 3,
+            "name": "Khoirunnisa",
+            "email": "nisa@gmail.com",
+            "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
         }
     ],
-    "comments": []
+    "comments": [
+        {
+            "body": "Nice Post",
+            "postId": 2,
+            "id": 1
+        }
+    ]
 }
