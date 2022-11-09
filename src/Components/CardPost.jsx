@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const CardPost = () => {
+const CardPost = ({body}) => {
     const navigate = useNavigate()
 
     const toDetailPost = (e) => {
@@ -12,7 +12,7 @@ const CardPost = () => {
     return (
         <Card style={{cursor: 'pointer'}} className='my-2' onClick={toDetailPost}>
             <Card.Body>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                {body}
             </Card.Body>
         </Card>
     );

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Form} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children, setSearch }) => {
     return (
         <Container fluid className='mx-auto'>
             <Row style={{minHeight: '100vh'}}>
@@ -28,7 +28,7 @@ const Sidebar = ({ children }) => {
                 <Col md={3} className='border-start border-dark text-center pt-3'>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Control type="text" placeholder="Search..." />
+                            <Form.Control type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)}/>
                         </Form.Group>
                     </Form>
                 </Col>

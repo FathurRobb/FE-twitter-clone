@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Form, InputGroup } from "react-bootstrap";
 import CardPost from '../Components/CardPost';
 import Sidebar from '../Components/Sidebar';
 
 const Home = () => {
+    const [ search, setSearch ] = useState('')
+
+    const bodyText =  ['apa kenapa mengapa waw', 'you\'ll never walk alone', 'Come on you spurs']
     return (
-        <Sidebar>
+        <Sidebar setSearch={setSearch}>
             <div className="px-3"> 
                 <h3>Home</h3>
                 {/* POSTING INPUT FORM */}
@@ -20,10 +24,11 @@ const Home = () => {
                     </Button>
                 </InputGroup>
 
-                {/* POSTING */}
-                <CardPost />
-                <CardPost />
-                <CardPost />
+                {bodyText.filter( item => {
+                    return item.toLowerCase() === '' ? item : item.toLowerCase().includes(search)
+                }).map(body => (
+                    <CardPost body={body} />
+                ))}
             </div>
         </Sidebar>
     );
