@@ -25,8 +25,10 @@ const MyPost = () => {
         navigate('/')
     }
 
-    const postFilter = posts.filter(post => post.user === session.id)
-
+    
+    const postFilter = posts.filter(post => post.userId === session.id)
+    console.log(postFilter);
+    
     return (
         <Sidebar>
             <Container style={{ cursor: 'pointer' }} className='px-0'>

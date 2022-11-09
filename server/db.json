@@ -1,0 +1,25 @@
+{
+    "posts": [
+        {
+            "post": "Test create post",
+            "userId": 1,
+            "name": "Ilham Fathur Robbani",
+            "id": 2
+        },
+        {
+            "post": "Test",
+            "userId": 0,
+            "name": "Test",
+            "id": 3
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Ilham Fathur Robbani",
+            "email": "ilham@gmail.com",
+            "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+        }
+    ],
+    "comments": []
+}

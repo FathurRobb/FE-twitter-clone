@@ -29,8 +29,6 @@ const FormLogin = () => {
         if (checkEmail.data.length > 0) {
             const checkPassword = bcrypt.compareSync(form.password, checkEmail.data[0].password)
             if (checkPassword) {
-                console.log("password benar");
-                console.log(checkEmail.data[0]);
                 sessionStorage.setItem('data_user', JSON.stringify(checkEmail.data[0]));
                 navigate('/');
             } else {
