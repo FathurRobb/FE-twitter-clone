@@ -3,8 +3,8 @@ import { useState } from "react";
 import ButtonAction from "./ButtonAction";
 import AlertAction from "./AlertAction";
 import bcrypt from "bcryptjs"
-import { useNavigate } from "react-router-dom";
-import {Form, Button, Container} from 'react-bootstrap';
+import { Link, useNavigate } from "react-router-dom";
+import {Form, Container} from 'react-bootstrap';
 
 const rootUrl = 'http://localhost:3001/users'
 
@@ -52,29 +52,32 @@ const FormLogin = () => {
             <h1 className='text-center'>Login Page</h1>
             {alertEmail}
             {alertPassword}
-            <Form>
+            <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={form.email} onChange={handleChange} required />
-                    <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                    </Form.Text>
+                    <Form.Control type="email" placeholder="Enter email" name="email" value={form.email} onChange={handleChange} required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
+                    <Form.Control type="password" placeholder="Password" name="password" value={form.password} onChange={handleChange} required />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <div className="d-grid gap-2">
+                    <ButtonAction variant={'outline-dark'} text={'Login'}/>
+                </div>
+                <Form.Text>
+                    Don't have an account ? <Link to={'/register'} style={{textDecoration: 'none', color: "black"}}><b>Sign In Here</b></Link>
+                </Form.Text>
             </Form>
 
-            {/* <form onSubmit={handleLogin}>
-                <input type="text" name="email" placeholder="email" value={form.email} onChange={handleChange} required/>
-                <input type="password" name="password" placeholder="password" value={form.password} onChange={handleChange} required/>
-                <ButtonAction variant={'outline-dark'} text={'Login'}/>
-            </form> */}
+        {/*      <form onSubmit={handleLogin}>
+                <h1 className='text-center'>Login Page</h1>
+         {alertEmail}
+         {alertPassword}
+                 <input type="text" name="email" placeholder="email" value={form.email} onChange={handleChange} required/>
+                 <input type="password" name="password" placeholder="password" value={form.password} onChange={handleChange} required/>
+                 <ButtonAction variant={'outline-dark'} text={'Login'}/>
+             </form>  */}
         </Container>
     )
 }
