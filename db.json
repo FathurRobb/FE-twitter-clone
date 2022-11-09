@@ -5,6 +5,12 @@
       "name": "Ilham Fathur Robbani",
       "email": "ilham@gmail.com",
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+    },
+    {
+      "name": "tes",
+      "email": "test@gmail.com",
+      "hashPassword": {},
+      "id": 2
     }
   ]
 }

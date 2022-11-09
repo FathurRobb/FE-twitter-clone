@@ -17,20 +17,18 @@ const FormLogin = () => {
     const [showAlertEmail, setshowAlertEmail] = useState(false);
     let alertEmail;
     if (showAlertEmail) {
-        alertEmail = <AlertAction variant={'danger'} message={'Email tidak terdaftar'} onClose={() => setshowAlertEmail(false)}/>
+        alertEmail = <AlertAction variant={'danger'} message={'Email Not Found'} onClose={() => setshowAlertEmail(false)}/>
     } 
     const [showAlertPassword, setshowAlertPassword] = useState(false);
     let alertPassword;
     if (showAlertPassword) {
-        alertPassword = <AlertAction variant={'danger'} message={'Password yang anda masukan salah'} onClose={() => setshowAlertPassword(false)}/>
+        alertPassword = <AlertAction variant={'danger'} message={'Wrong Password'} onClose={() => setshowAlertPassword(false)}/>
     } 
     const getUsers = async () => {
         const checkEmail = await axios.get(`${rootUrl}?email=${form.email}`);
         if (checkEmail.data.length > 0) {
             const checkPassword = bcrypt.compareSync(form.password, checkEmail.data[0].password)
             if (checkPassword) {
-                console.log("password benar");
-                console.log(checkEmail.data[0]);
                 sessionStorage.setItem('data_user', JSON.stringify(checkEmail.data[0]));
                 navigate('/');
             } else {
@@ -49,13 +47,13 @@ const FormLogin = () => {
     
     return (
         <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
-            <h1 className='text-center'>Login Page</h1>
+            <h1 className='text-center mb-3'>Login Page</h1>
             {alertEmail}
             {alertPassword}
             <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" name="email" value={form.email} onChange={handleChange} required />
+                    <Form.Control type="email" placeholder="Enter Email" name="email" value={form.email} onChange={handleChange} required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -63,11 +61,13 @@ const FormLogin = () => {
                     <Form.Control type="password" placeholder="Password" name="password" value={form.password} onChange={handleChange} required />
                 </Form.Group>
                 <div className="d-grid gap-2">
-                    <ButtonAction variant={'outline-dark'} text={'Login'}/>
+                    <ButtonAction variant={'outline-dark'} text={'Log In'}/>
                 </div>
-                <Form.Text>
-                    Don't have an account ? <Link to={'/register'} style={{textDecoration: 'none', color: "black"}}><b>Sign In Here</b></Link>
-                </Form.Text>
+                <div className="mt-3" style={{textAlign: "center"}}>
+                    <Form.Text>
+                        Don't have an account ? <Link to={'/register'} style={{textDecoration: 'none', color: "black"}}><b>Sign In Here</b></Link>
+                    </Form.Text>
+                </div>
             </Form>
 
         {/*      <form onSubmit={handleLogin}>
