@@ -1,13 +1,58 @@
 import Sidebar from "../Components/Sidebar";
-import { Container, Form, InputGroup} from "react-bootstrap";
+import { Container, Form, InputGroup } from "react-bootstrap";
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import CardPost from "../Components/CardPost";
+import { useNavigate, useParams } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { __getComments } from "../redux/modules/comments";
+import axios from "axios";
+import useInput from "../hooks/useInput";
 
+
+const postUrl = 'http://localhost:3001/posts/'
+const commentUrl = 'http://localhost:3001/comments/'
 const DetailPost = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const { comments } = useSelector(state => state.comments)
+    const { id } = useParams();
+    const [dataPost, setDataPost] = useState();
+    const [comment, handleCommentChange, setComment] = useInput();
+    const session = JSON.parse(sessionStorage.getItem('data_user'))
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        if (!comment) {
+            return;
+        }
+        createComment();
+    }
+
+    const createComment = async () => {
+        await axios.post(commentUrl, { body:comment, postId:+id })
+        dispatch(__getComments())
+        setComment('')
+    }
+
+    const getPostByID = async () => {
+        const post = await axios.get(postUrl + id)
+        const data = await post.data
+        setDataPost(data)
+    }
+
+    useEffect(() => {
+        dispatch(__getComments())
+        getPostByID()
+    }, [dispatch])
+
+
+    const commentsFilter = comments.filter(comment => comment.postId === +id)
+
+
 
     const toHomePage = (e) => {
         e.preventDefault()
@@ -16,34 +61,45 @@ const DetailPost = () => {
 
     return (
         <Sidebar>
-            <Container style={{cursor: 'pointer'}} className='px-0'>
+            <Container style={{ cursor: 'pointer' }} className='px-0'>
                 <header className="d-flex align-items-center px-3">
                     <FontAwesomeIcon icon={faArrowLeft} onClick={toHomePage} />
-                    <h4 className="mx-4">Post</h4>                    
+                    <h4 className="mx-4">Post</h4>
                 </header>
                 <section className="my-4 border-bottom border-dark pb-3 px-3">
                     <p className="border-bottom border-dark pb-3 px-3">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        {dataPost ? dataPost.post : ''}
                     </p>
                     <InputGroup className="mb-3">
                         <Form.Control
                             placeholder="Reply Post..."
                             aria-label="Reply Post..."
-                            style={{border: 'none'}}
+                            style={{ border: 'none' }}
+                            value={comment}
+                            onChange={handleCommentChange}
+                            disabled={!session}
                         />
-                        <Button variant="outline-dark" id="button-addon2">
+                        <Button 
+                        variant="outline-dark" 
+                        id="button-addon2"
+                        onClick={handleSubmit}
+                        >
                             Button
                         </Button>
                     </InputGroup>
                 </section>
                 <section className="px-3">
-                    <CardPost />
-                    <CardPost />
-                    <CardPost />
+                    {commentsFilter.map(comment => (
+                        <Card className='my-2' key={comment.id}>
+                            <Card.Body>
+                                {comment.body}
+                            </Card.Body>
+                        </Card>
+                    ))}
                 </section>
             </Container>
         </Sidebar>
     );
 }
- 
+
 export default DetailPost;

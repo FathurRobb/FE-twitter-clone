@@ -9,11 +9,11 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/post" element={<DetailPost />} />
-            <Route exact path="/my-post" element={<MyPost />} />
-            <Route exact path='/login' element={<LoginPage />}/>
-            <Route exact path='/register' element={<RegisterPage />}/>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/post/:id" element={<DetailPost />} />
+        <Route exact path="/my-post" element={<MyPost />} />
+        <Route exact path='/login' element={<LoginPage />} />
+        <Route exact path='/register' element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
   );

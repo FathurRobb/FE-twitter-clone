@@ -1,10 +1,31 @@
 {
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "post": "Some Post",
+      "name": "test"
+    }
+  ],
   "users": [
     {
       "id": 1,
       "name": "Ilham Fathur Robbani",
       "email": "ilham@gmail.com",
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "test Comment",
+      "postId": 1,
+      "user": 1
+    },
+    {
+      "body": "Some Comment",
+      "postId": 1,
+      "id": 3
     }
   ]
 }
