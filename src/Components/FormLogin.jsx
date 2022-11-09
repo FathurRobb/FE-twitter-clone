@@ -4,6 +4,7 @@ import ButtonAction from "./ButtonAction";
 import AlertAction from "./AlertAction";
 import bcrypt from "bcryptjs"
 import { useNavigate } from "react-router-dom";
+import {Form, Button, Container} from 'react-bootstrap';
 
 const rootUrl = 'http://localhost:3001/users'
 
@@ -47,16 +48,34 @@ const FormLogin = () => {
     }
     
     return (
-        <div>
-            <h1>Login Page</h1>
+        <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
+            <h1 className='text-center'>Login Page</h1>
             {alertEmail}
             {alertPassword}
-            <form onSubmit={handleLogin}>
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" value={form.email} onChange={handleChange} required />
+                    <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+
+            {/* <form onSubmit={handleLogin}>
                 <input type="text" name="email" placeholder="email" value={form.email} onChange={handleChange} required/>
                 <input type="password" name="password" placeholder="password" value={form.password} onChange={handleChange} required/>
                 <ButtonAction variant={'outline-dark'} text={'Login'}/>
-            </form>
-        </div>
+            </form> */}
+        </Container>
     )
 }
 
