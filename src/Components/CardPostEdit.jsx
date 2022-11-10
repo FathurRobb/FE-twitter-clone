@@ -2,12 +2,13 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useState } from "react";
-import { Card, Button, Modal, Form } from "react-bootstrap";
+import { Card, Modal, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import useInput from "../hooks/useInput";
 import { __getPosts } from "../redux/modules/posts";
+import ButtonAction from "./ButtonAction";
 
-const postUrl = "http://localhost:3001/posts/"
+const postUrl = "https://salty-beyond-47708.herokuapp.com/posts/"
 const CardPostEdit = (post) => {
     const dispatch = useDispatch()
     const [show, setShow] = useState(false);
@@ -19,7 +20,7 @@ const CardPostEdit = (post) => {
         setNewPost(event.target.value)
     }
 
-    console.log(post);
+    // console.log(post);
 
     const handlePatchReq = event => {
         event.preventDefault();
@@ -40,7 +41,6 @@ const CardPostEdit = (post) => {
         dispatch(__getPosts());
     }
 
-    console.log(post);
     return (
         <>
             <Card className='my-2'>
@@ -48,14 +48,12 @@ const CardPostEdit = (post) => {
                     <Card.Text>
                         {post.post.post}
                     </Card.Text>
-                    <Button variant="primary" onClick={handleShow}>
+                    <ButtonAction variant={"primary"} onClick={handleShow} text={"Edit"}>
                         <FontAwesomeIcon icon={faPen} className='me-2' />
-                        Edit
-                    </Button>
-                    <Button variant="danger" className='ms-2' onClick={()=>deletePost(post.post.id)}>
+                    </ButtonAction>
+                    <ButtonAction variant={"danger"} className={'ms-2'} onClick={()=>deletePost(post.post.id)} text={'Delete'}>
                         <FontAwesomeIcon icon={faTrash} className='me-2' />
-                        Delete
-                    </Button>
+                    </ButtonAction>
                 </Card.Body>
             </Card>
             <Modal show={show} onHide={handleClose}>
@@ -74,12 +72,8 @@ const CardPostEdit = (post) => {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handlePatchReq}>
-                        Save Changes
-                    </Button>
+                    <ButtonAction variant={"secondary"} onClick={handleClose} text={"Close"}/>
+                    <ButtonAction variant={"primary"} onClick={handlePatchReq} text={"Save Changes"}/>
                 </Modal.Footer>
             </Modal>
         </>

@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { Form, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import CardPost from '../Components/CardPost';
 import Sidebar from '../Components/Sidebar';
 import useInput from '../hooks/useInput';
 import { __getPosts } from '../redux/modules/posts';
+import ButtonAction from '../Components/ButtonAction';
 
-const postUrl = 'http://localhost:3001/posts/'
+const postUrl = 'https://salty-beyond-47708.herokuapp.com/posts/'
 const Home = () => {
     const dispatch = useDispatch()
     const { posts } = useSelector(state => state.posts)
@@ -32,7 +32,7 @@ const Home = () => {
         setPost('')
     }
 
-    console.log(session);
+    // console.log(session);
 
     useEffect(() => {
         dispatch(__getPosts());
@@ -52,12 +52,7 @@ const Home = () => {
                         onChange={handlePostChange}
                         disabled={!session}
                     />
-                    <Button
-                        variant="outline-dark"
-                        id="button-addon2"
-                        onClick={handleSubmit}>
-                        Post
-                    </Button>
+                    <ButtonAction variant={"outline-dark"} onClick={handleSubmit} text={'Post'}/>
                 </InputGroup>
 
                 {posts ? posts.filter( item => {

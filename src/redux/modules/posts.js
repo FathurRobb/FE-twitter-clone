@@ -15,7 +15,7 @@ export const __getPosts = createAsyncThunk(
     'getPosts',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get('http://localhost:3001/posts')
+            const { data } = await axios.get('https://salty-beyond-47708.herokuapp.com/posts')
             return thunkApi.fulfillWithValue(data)
         } catch (error) {
             return thunkApi.rejectWithValue(error);

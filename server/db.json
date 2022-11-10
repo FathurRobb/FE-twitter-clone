@@ -1,10 +1,16 @@
 {
   "posts": [
     {
-      "id": 1,
+      "post": "Test create post",
       "userId": 1,
-      "post": "Some Post",
-      "name": "test"
+      "name": "Ilham Fathur Robbani",
+      "id": 2
+    },
+    {
+      "post": "Test",
+      "userId": 0,
+      "name": "Test",
+      "id": 3
     }
   ],
   "users": [
@@ -15,23 +21,23 @@
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     },
     {
-      "name": "tes",
-      "email": "test@gmail.com",
-      "hashPassword": {},
-      "id": 2
+        "id": 2,
+        "name": "Ahmad Hasan Ali",
+        "email": "hasan@gmail.com",
+        "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+    },
+    {
+        "id": 3,
+        "name": "Khoirunnisa",
+        "email": "nisa@gmail.com",
+        "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "test Comment",
-      "postId": 1,
-      "user": 1
-    },
-    {
-      "body": "Some Comment",
-      "postId": 1,
-      "id": 3
+      "body": "Nice Post",
+      "postId": 2,
+      "id": 1
     }
   ]
 }

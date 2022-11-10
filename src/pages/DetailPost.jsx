@@ -1,6 +1,5 @@
 import Sidebar from "../Components/Sidebar";
 import { Container, Form, InputGroup } from "react-bootstrap";
-import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,10 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getComments } from "../redux/modules/comments";
 import axios from "axios";
 import useInput from "../hooks/useInput";
+import ButtonAction from "../Components/ButtonAction";
 
 
-const postUrl = 'http://localhost:3001/posts/'
-const commentUrl = 'http://localhost:3001/comments/'
+const postUrl = 'https://salty-beyond-47708.herokuapp.com/posts/'
+const commentUrl = 'https://salty-beyond-47708.herokuapp.com/comments/'
 const DetailPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -79,13 +79,7 @@ const DetailPost = () => {
                             onChange={handleCommentChange}
                             disabled={!session}
                         />
-                        <Button 
-                        variant="outline-dark" 
-                        id="button-addon2"
-                        onClick={handleSubmit}
-                        >
-                            Button
-                        </Button>
+                        <ButtonAction variant={"outline-dark"} onClick={handleSubmit} text={"Reply"}/>
                     </InputGroup>
                 </section>
                 <section className="px-3">

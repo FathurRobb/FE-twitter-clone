@@ -13,7 +13,7 @@ export const __getComments = createAsyncThunk(
     'getComments',
     async (payload, thunkApi) => {
         try {
-            const {data} = await axios.get('http://localhost:3001/comments')
+            const {data} = await axios.get('https://salty-beyond-47708.herokuapp.com/comments')
             return thunkApi.fulfillWithValue(data)
         } catch (error) {
             return thunkApi.rejectWithValue(error);

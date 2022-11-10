@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { __getPosts } from "../redux/modules/posts";
 
-const postUrl = 'http://localhost:3001/posts/'
+
 const MyPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -25,8 +25,10 @@ const MyPost = () => {
         navigate('/')
     }
 
-    const postFilter = posts.filter(post => post.user === session.id)
-
+    
+    const postFilter = posts.filter(post => post.userId === session.id)
+    // console.log(postFilter);
+    
     return (
         <Sidebar>
             <Container style={{ cursor: 'pointer' }} className='px-0'>
