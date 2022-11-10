@@ -9,7 +9,7 @@ import useInput from '../hooks/useInput';
 import { __getPosts } from '../redux/modules/posts';
 import ButtonAction from '../Components/ButtonAction';
 
-const postUrl = 'https://salty-beyond-47708.herokuapp.com/posts/'
+const postUrl = `${process.env.REACT_APP_API_URL}posts/`
 const Home = () => {
     const dispatch = useDispatch()
     const { posts } = useSelector(state => state.posts)

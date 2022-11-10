@@ -6,7 +6,7 @@ import ButtonAction from './ButtonAction';
 import bcrypt from 'bcryptjs';
 import useInput from '../hooks/useInput';
 
-const rootUrl = 'https://salty-beyond-47708.herokuapp.com/users'
+const rootUrl = `${process.env.REACT_APP_API_URL}users`
 
 const FormRegister = () => {
     const navigate = useNavigate();

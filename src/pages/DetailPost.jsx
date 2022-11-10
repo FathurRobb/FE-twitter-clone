@@ -12,8 +12,8 @@ import useInput from "../hooks/useInput";
 import ButtonAction from "../Components/ButtonAction";
 
 
-const postUrl = 'https://salty-beyond-47708.herokuapp.com/posts/'
-const commentUrl = 'https://salty-beyond-47708.herokuapp.com/comments/'
+const postUrl = `${process.env.REACT_APP_API_URL}posts/`
+const commentUrl = `${process.env.REACT_APP_API_URL}comments/`
 const DetailPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
