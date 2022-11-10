@@ -12,7 +12,6 @@ const Sidebar = ({ children, setSearch }) => {
     const logout = () => {
         sessionStorage.clear()
         this.shouldComponentUpdate()
-        navigate('/login')
     }
 
     return (
@@ -34,7 +33,7 @@ const Sidebar = ({ children, setSearch }) => {
                     }
                     {
                         session ?
-                            <Link className="my-3" onClick={logout} style={{ textDecoration: 'none', color: 'black' }}>
+                            <Link className="my-3" onClick={logout} to={'/'} style={{ textDecoration: 'none', color: 'black' }}>
                                 <FontAwesomeIcon icon={faRightFromBracket} className="mx-3" />
                                 Logout
                             </Link>
