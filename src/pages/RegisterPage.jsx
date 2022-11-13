@@ -2,7 +2,9 @@ import FormRegister from "../Components/FormRegister";
 
 const RegisterPage = () => {
     return (
-        <FormRegister />
+        <section className="register">
+            <FormRegister />
+        </section>
     );
 }
  

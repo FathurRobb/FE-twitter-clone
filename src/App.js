@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './styles/App.css';
 import Router from './Router';
 
 function App() {
   return (
-    <div className="App mx-4">
+    <div className="App">
       <Router />
     </div>
   );

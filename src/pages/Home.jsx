@@ -39,29 +39,45 @@ const Home = () => {
     }, [dispatch])
 
     return (
-        <Sidebar setSearch={setSearch}>
-            <div className="px-3">
-                <h3>Home</h3>
-                {/* POSTING INPUT FORM */}
-                <InputGroup className="mb-3">
-                    <Form.Control
-                        placeholder="Create Post..."
-                        aria-label="Create Post..."
-                        style={{ height: '3rem' }}
-                        value={post}
-                        onChange={handlePostChange}
-                        disabled={!session}
-                    />
-                    <ButtonAction variant={"outline-dark"} onClick={handleSubmit} text={'Post'}/>
-                </InputGroup>
-
-                {posts ? posts.filter( item => {
-                    return item.post.toLowerCase() === '' ? item.post : item.post.toLowerCase().includes(search.toLowerCase())
-                }).map(post => (
-                    <CardPost key={post.id} post={post} />
-                )) : ''}
-            </div>
+        <Sidebar>
+            <header>
+                <h3 className='ps-4'>Home</h3>
+                <input type="text" name="tweet" id="tweet" placeholder="What's happening?" className='new-tweet' />
+                <div><button className='btn-tw add-tweet'>Tweet</button></div>
+            </header>
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
         </Sidebar>
+        // <Sidebar setSearch={setSearch}>
+        //     <div className="px-3">
+        //         <h3>Home</h3>
+        //         {/* POSTING INPUT FORM */}
+        //         <InputGroup className="mb-3">
+        //             <Form.Control
+        //                 placeholder="Create Post..."
+        //                 aria-label="Create Post..."
+        //                 style={{ height: '3rem' }}
+        //                 value={post}
+        //                 onChange={handlePostChange}
+        //                 disabled={!session}
+        //             />
+        //             <ButtonAction variant={"outline-dark"} onClick={handleSubmit} text={'Post'}/>
+        //         </InputGroup>
+
+        //         {posts ? posts.filter( item => {
+        //             return item.post.toLowerCase() === '' ? item.post : item.post.toLowerCase().includes(search.toLowerCase())
+        //         }).map(post => (
+        //             <CardPost key={post.id} post={post} />
+        //         )) : ''}
+        //     </div>
+        // </Sidebar>
     );
 }
 

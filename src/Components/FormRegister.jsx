@@ -57,38 +57,49 @@ const FormRegister = () => {
     }
 
     return (
-        <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
-            <h1 className='text-center mb-3'>Register Your Account</h1>
-            <Form onSubmit={handleSignin}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" name="name" value={name} onChange={handleChangeName} placeholder="Enter Your Name" required />
-                </Form.Group>
+        <section className="register-form">
+            <h2>Create Your Account</h2>
+            <form>
+                <input type="text" name="username" placeholder='username' id="" />
+                <input type="text" name="name" placeholder='Name' id="" />
+                <input type="email" name="email" placeholder='Email' id="" />
+                <input type="password" name="password" placeholder='password' id="" />
+                <button className='btn-tw mt-2'>Sign Up</button>
+                <p className="mt-3">Already have account? <Link>Login</Link></p>
+            </form>
+        </section>
+        // <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
+        //     <h1 className='text-center mb-3'>Register Your Account</h1>
+        //     <Form onSubmit={handleSignin}>
+        //         <Form.Group className="mb-3">
+        //             <Form.Label>Name</Form.Label>
+        //             <Form.Control type="text" name="name" value={name} onChange={handleChangeName} placeholder="Enter Your Name" required />
+        //         </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" name="email" value={email} onChange={handleChangeEmail} placeholder="Enter Email" required />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
+        //         <Form.Group className="mb-3" controlId="formBasicEmail">
+        //             <Form.Label>Email address</Form.Label>
+        //             <Form.Control type="email" name="email" value={email} onChange={handleChangeEmail} placeholder="Enter Email" required />
+        //             <Form.Text className="text-muted">
+        //                 We'll never share your email with anyone else.
+        //             </Form.Text>
+        //         </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" value={password} onChange={handleChangePassword} placeholder="Password" required />
-                </Form.Group>
+        //         <Form.Group className="mb-3" controlId="formBasicPassword">
+        //             <Form.Label>Password</Form.Label>
+        //             <Form.Control type="password" name="password" value={password} onChange={handleChangePassword} placeholder="Password" required />
+        //         </Form.Group>
                 
-                <div className="d-grid gap-2">
-                    <ButtonAction variant={'outline-dark'} text={'Sign In'}/>
-                </div>
+        //         <div className="d-grid gap-2">
+        //             <ButtonAction variant={'outline-dark'} text={'Sign In'}/>
+        //         </div>
                 
-                <div className="mt-3" style={{textAlign: "center"}}>
-                    <Form.Text>
-                        Already have an account ? <Link to={'/login'} style={{textDecoration: 'none', color: "black"}}><b>Log In Here</b></Link>
-                    </Form.Text>
-                </div>
-            </Form>
-        </Container>
+        //         <div className="mt-3" style={{textAlign: "center"}}>
+        //             <Form.Text>
+        //                 Already have an account ? <Link to={'/login'} style={{textDecoration: 'none', color: "black"}}><b>Log In Here</b></Link>
+        //             </Form.Text>
+        //         </div>
+        //     </Form>
+        // </Container>
     );
 }
  

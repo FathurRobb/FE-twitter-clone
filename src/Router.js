@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetailPost from "./pages/DetailPost";
 import Home from "./pages/Home";
-import MyPost from "./pages/MyPost";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Profile from "./pages/Profile";
 
 const Router = () => {
   return (
@@ -11,7 +11,7 @@ const Router = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/post/:id" element={<DetailPost />} />
-        <Route exact path="/my-post" element={<MyPost />} />
+        <Route exact path="/profile" element={<Profile />} />
         <Route exact path='/login' element={<LoginPage />} />
         <Route exact path='/register' element={<RegisterPage />} />
       </Routes>

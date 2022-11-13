@@ -2,7 +2,7 @@ import FormLogin from "../Components/FormLogin"
 
 const LoginPage = () => {
     return (
-        <div>
+        <div className="register">
             <FormLogin/>
         </div>
     )

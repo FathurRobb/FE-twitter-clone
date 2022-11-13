@@ -3,8 +3,9 @@ import { useState } from "react";
 import ButtonAction from "./ButtonAction";
 import AlertAction from "./AlertAction";
 import bcrypt from "bcryptjs"
-import { Link, useNavigate } from "react-router-dom";
-import {Form, Container} from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
+import LogoTW from '../assets/twitter-logo-dark.png'
+import { Link } from "react-router-dom";
 
 const rootUrl = `${process.env.REACT_APP_API_URL}users`
 // PASSWORD = admin123
@@ -47,39 +48,42 @@ const FormLogin = () => {
     }
     
     return (
-        <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
-            <h1 className='text-center mb-3'>Login Page</h1>
-            {alertEmail}
-            {alertPassword}
-            <Form onSubmit={handleLogin}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Email" name="email" value={form.email} onChange={handleChange} required />
-                </Form.Group>
+        <section className="register-form">
+            <section className="logo mx-auto my-3">
+                <img src={LogoTW} alt="twitter logo" />
+            </section>
+            <h2 className="text-center">Log in to Twitter</h2>
+            <form>
+                <input type="text" name="username" placeholder='username' id="" />
+                <input type="password" name="password" placeholder='password' id="" />
+                <button className='btn-tw mt-2'>Login</button>
+                <p className="mt-3">Don't have account? <Link>Sign Up</Link></p>
+            </form>
+        </section>
+        // <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
+        //     <h1 className='text-center mb-3'>Login Page</h1>
+        //     {alertEmail}
+        //     {alertPassword}
+        //     <Form onSubmit={handleLogin}>
+        //         <Form.Group className="mb-3" controlId="formBasicEmail">
+        //             <Form.Label>Email address</Form.Label>
+        //             <Form.Control type="email" placeholder="Enter Email" name="email" value={form.email} onChange={handleChange} required />
+        //         </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name="password" value={form.password} onChange={handleChange} required />
-                </Form.Group>
-                <div className="d-grid gap-2">
-                    <ButtonAction variant={'outline-dark'} text={'Log In'}/>
-                </div>
-                <div className="mt-3" style={{textAlign: "center"}}>
-                    <Form.Text>
-                        Don't have an account ? <Link to={'/register'} style={{textDecoration: 'none', color: "black"}}><b>Sign In Here</b></Link>
-                    </Form.Text>
-                </div>
-            </Form>
-
-        {/*      <form onSubmit={handleLogin}>
-                <h1 className='text-center'>Login Page</h1>
-         {alertEmail}
-         {alertPassword}
-                 <input type="text" name="email" placeholder="email" value={form.email} onChange={handleChange} required/>
-                 <input type="password" name="password" placeholder="password" value={form.password} onChange={handleChange} required/>
-                 <ButtonAction variant={'outline-dark'} text={'Login'}/>
-             </form>  */}
-        </Container>
+        //         <Form.Group className="mb-3" controlId="formBasicPassword">
+        //             <Form.Label>Password</Form.Label>
+        //             <Form.Control type="password" placeholder="Password" name="password" value={form.password} onChange={handleChange} required />
+        //         </Form.Group>
+        //         <div className="d-grid gap-2">
+        //             <ButtonAction variant={'outline-dark'} text={'Log In'}/>
+        //         </div>
+        //         <div className="mt-3" style={{textAlign: "center"}}>
+        //             <Form.Text>
+        //                 Don't have an account ? <Link to={'/register'} style={{textDecoration: 'none', color: "black"}}><b>Sign In Here</b></Link>
+        //             </Form.Text>
+        //         </div>
+        //     </Form>
+        // </Container>
     )
 }
 
