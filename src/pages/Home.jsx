@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Form, InputGroup } from "react-bootstrap";
@@ -6,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardPost from '../Components/CardPost';
 import Sidebar from '../Components/Sidebar';
 import useInput from '../hooks/useInput';
-import { __getPosts } from '../redux/modules/posts';
+import { createPost, getPosts } from '../redux/modules/posts';
 import ButtonAction from '../Components/ButtonAction';
 
-const postUrl = `${process.env.REACT_APP_API_URL}posts/`
+
 const Home = () => {
     const dispatch = useDispatch()
-    const { posts } = useSelector(state => state.posts)
+    const { posts, isLoading } = useSelector(state => state.posts)
     const [post, handlePostChange, setPost] = useInput();
     const [ search, setSearch ] = useState('')
 
@@ -21,22 +20,23 @@ const Home = () => {
         if (!post) {
             return;
         }
-        createPost();
+        makePost();
     }
 
     const session = JSON.parse(sessionStorage.getItem("data_user"))
 
-    const createPost = async () => {
-        await axios.post(postUrl, { post, userId:session.id, name:session.name })
-        dispatch(__getPosts())
+    const makePost = async () => {
+        dispatch(createPost({ post, userId:session.id, name:session.name }))
         setPost('')
     }
 
-    // console.log(session);
-
     useEffect(() => {
-        dispatch(__getPosts());
+        dispatch(getPosts());
     }, [dispatch])
+
+    if (isLoading) {
+        return <div>Loading....</div>;
+      }
 
     return (
         <Sidebar setSearch={setSearch}>

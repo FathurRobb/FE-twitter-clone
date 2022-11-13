@@ -2,10 +2,9 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faRightFromBracket, faRocket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ children, setSearch }) => {
-    const navigate = useNavigate();
 
     const session = JSON.parse(sessionStorage.getItem("data_user"))
 

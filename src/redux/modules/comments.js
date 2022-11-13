@@ -2,21 +2,50 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    comments:[],
+    comments: [],
     isLoading: false,
     error: null,
 }
 
 
 
-export const __getComments = createAsyncThunk(
+export const getComments = createAsyncThunk(
     'getComments',
     async (payload, thunkApi) => {
         try {
-            const {data} = await axios.get(process.env.REACT_APP_API_URL+'comments')
-            return thunkApi.fulfillWithValue(data)
+            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const comments = data.filter(comment => comment.postId === payload)
+            return thunkApi.fulfillWithValue(comments)
         } catch (error) {
             return thunkApi.rejectWithValue(error);
+        }
+    }
+)
+
+export const createComment = createAsyncThunk(
+    'createComments',
+    async (payload, thunkApi) => {
+        try {
+            await axios.post(process.env.REACT_APP_API_URL+'comments', payload)
+            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const comments = data.filter(comment => comment.postId === payload.postId)
+            return thunkApi.fulfillWithValue(comments)
+        } catch (error) {
+            return thunkApi.rejectWithValue(error)
+        }
+    }
+)
+
+export const deleteComment = createAsyncThunk(
+    'deleteComments',
+    async (payload, thunkApi) => {
+        try {
+            await axios.delete(process.env.REACT_APP_API_URL+'comments/'+payload.commentId)
+            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const comments = data.filter(comment => comment.postId === payload.postId)
+            return thunkApi.fulfillWithValue(comments)
+        } catch (error) {
+            return thunkApi.rejectWithValue(error)
         }
     }
 )
@@ -26,19 +55,44 @@ const comments = createSlice({
     initialState,
     reducers: {
     },
-    extraReducers:{
-        [__getComments.pending]:(state) =>{
-            state.isLoading = true;
-        },
-        [__getComments.fulfilled]:(state, action) =>{
-            state.isLoading = false;
-            state.comments = action.payload;
-            state.error = null;
-        },
-        [__getComments.rejected]:(state, action) =>{
-            state.isLoading = false;
-            state.error = action.payload;
-        },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getComments.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(getComments.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.comments = action.payload;
+                state.error = null;
+            })
+            .addCase(getComments.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(createComment.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(createComment.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.comments = action.payload;
+                state.error = null;
+            })
+            .addCase(createComment.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteComment.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(deleteComment.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.comments = action.payload;
+                state.error = null;
+            })
+            .addCase(deleteComment.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
     },
 });
 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CardPostEdit from "../Components/CardPostEdit";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { __getPosts } from "../redux/modules/posts";
+import { getPostsByUserID } from "../redux/modules/posts";
 
 
 const MyPost = () => {
@@ -14,20 +14,20 @@ const MyPost = () => {
     const dispatch = useDispatch()
     const session = JSON.parse(sessionStorage.getItem("data_user"))
 
-    const { posts } = useSelector(state => state.posts)
+    const { posts, isLoading } = useSelector(state => state.posts)
 
     useEffect(() => {
-        dispatch(__getPosts());
-    }, [dispatch])
+        dispatch(getPostsByUserID(session.id));
+    }, [dispatch, session.id])
 
     const toHomePage = (e) => {
         e.preventDefault()
         navigate('/')
     }
 
-    
-    const postFilter = posts.filter(post => post.userId === session.id)
-    // console.log(postFilter);
+    if (isLoading) {
+        return <div>Loading....</div>;
+      }
     
     return (
         <Sidebar>
@@ -38,7 +38,7 @@ const MyPost = () => {
                         <h4 className="mx-4">My Post</h4>
                     </header>
                     <section>
-                        {postFilter.map(post => (
+                        {posts.map(post => (
                             // <CardPost key={post.id} post={post} />
                             <CardPostEdit key={post.id} post={post} />
                         ))}
