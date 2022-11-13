@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import ButtonAction from './ButtonAction';
 import bcrypt from 'bcryptjs';
 import useInput from '../hooks/useInput';
+import AlertAction from './AlertAction';
 
 const rootUrl = `${process.env.REACT_APP_API_URL}users`
 
@@ -13,60 +14,91 @@ const FormRegister = () => {
     const [name, handleChangeName] = useInput();
     const [email, handleChangeEmail] = useInput();
     const [password, handleChangePassword] = useInput();
+    const [confirmPassword, handleChangeConfirmPassword] = useInput();
     
-    const salt = bcrypt.genSaltSync(10)
-    const h = bcrypt.hash(password, salt);
+    const salt = bcrypt.genSaltSync(10);
+    const hashPassword = bcrypt.hashSync(password, salt);
 
-    
-    // const [showAlertEmail, setshowAlertEmail] = useState(false);
-    // let alertEmail;
-    // if (showAlertEmail) {
-    //     alertEmail = <AlertAction variant={'danger'} message={'Email tidak terdaftar'} onClose={() => setshowAlertEmail(false)}/>
-    // } 
-    // const [showAlertPassword, setshowAlertPassword] = useState(false);
-    // let alertPassword;
-    // if (showAlertPassword) {
-    //     alertPassword = <AlertAction variant={'danger'} message={'Password yang anda masukan salah'} onClose={() => setshowAlertPassword(false)}/>
-    // } 
-    // const getUsers = async () => {
-    //     const checkEmail = await axios.get(`${rootUrl}?email=${form.email}`);
-    //     if (checkEmail.data.length > 0) {
-    //         const checkPassword = bcrypt.compareSync(form.password, checkEmail.data[0].password)
-    //         if (checkPassword) {
-    //             console.log("password benar");
-    //             console.log(checkEmail.data[0]);
-    //             sessionStorage.setItem('data_user', JSON.stringify(checkEmail.data[0]));
-    //             navigate('/');
-    //         } else {
-    //             setshowAlertPassword(true)
-    //         }
-    //         setForm({ email: '', password: '' });
-    //     } else {
-    //         setshowAlertEmail(true);
-    //         setForm({ email: '', password: '' });
-    //     }
-    // }
+    const [error, setError] = useState({
+        password: '',
+        confirmPassword: ''
+    })
+
+    const validatePassword = e => {
+        let { name, value } = e.target;
+        setError(prev => {
+            const stateObj = { ...prev, [name]: ""};
+            switch (name) {
+                case "password":
+                    if (confirmPassword && value !== confirmPassword) {
+                        stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+                    } else {
+                        stateObj["confirmPassword"] = confirmPassword ? "" : error.confirmPassword;
+                    } 
+                    break;
+                case "confirmPassword":
+                    if (password && value !== password) {
+                        stateObj[name] = "Password and Confirm Password does not match.";
+                    }
+                    break;
+                default:
+                    break;
+            } 
+            return stateObj;
+        });
+    };
+
+    const [showAlertEmail, setshowAlertEmail] = useState(false);
+    let alertEmail;
+    if (showAlertEmail) {
+        alertEmail = <AlertAction variant={'danger'} message={'Email already exist'} onClose={() => setshowAlertEmail(false)}/>
+    } 
+
     const addUser = async () => {
-        // await axios.post(rootUrl, {name,email,hashPassword});
-        // console.log("berhasil");
-        console.log(h)
+        await axios.post(rootUrl, {
+            name: name,
+            email: email,
+            password: hashPassword
+        });
     }
+
+    const checkUser = async () => {
+        const checkEmail = await axios.get(`${rootUrl}?email=${email}`);
+        if (checkEmail.data.length > 0) {
+            setshowAlertEmail(true);
+        } else {
+            addUser();
+            navigate('/login');
+        }
+    }
+
     const handleSignin = event => {
         event.preventDefault();
-        addUser();
+        checkUser();
     }
 
     return (
         <section className="register-form">
             <h2>Create Your Account</h2>
-            <form>
+            {alertEmail}
+            <form onSubmit={handleSignin}>
                 <input type="text" name="username" placeholder='username' id="" />
-                <input type="text" name="name" placeholder='Name' id="" />
+                <input type="text" name="name" value={name} onChange={handleChangeName}  placeholder='Name' id="" />
                 <input type="email" name="email" placeholder='Email' id="" />
-                <input type="password" name="password" placeholder='password' id="" />
+                <input type="password" name="password" value={password} onChange={handleChangePassword} onBlur={validatePassword} placeholder='password' id="" />
+                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChangeConfirmPassword} onBlur={validatePassword} id="" placeholder='Confirm Password' />
+                {error.confirmPassword && <span className='err text-danger'>{error.confirmPassword}</span>}
                 <button className='btn-tw mt-2'>Sign Up</button>
                 <p className="mt-3">Already have account? <Link>Login</Link></p>
             </form>
+            <div className="d-grid gap-2">
+                {
+                    error.confirmPassword !== "" ?
+                        <ButtonAction variant={'outline-dark'} disabled={error} text={'Sign In'}/>
+                    :
+                        <ButtonAction variant={'outline-dark'} text={'Sign In'}/>
+                }
+            </div>
         </section>
         // <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
         //     <h1 className='text-center mb-3'>Register Your Account</h1>
