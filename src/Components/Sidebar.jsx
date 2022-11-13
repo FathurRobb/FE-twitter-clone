@@ -1,5 +1,5 @@
 import { faBell, faBookmark, faEnvelope, faRectangleList, faUser } from "@fortawesome/free-regular-svg-icons";
-import { faEllipsis, faHashtag, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis, faHashtag, faHome, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState } from "react";
 import { Overlay, Tooltip } from "react-bootstrap";
@@ -67,20 +67,35 @@ const Sidebar = ({ children, setSearch }) => {
                         </section>
                     </div>
                     <div>
-                        <section className="user-cta" ref={target} onClick={() => setShow(!show)}>
-                            <div className="user-name">
-                                <h3>Nama User</h3>
-                                <p className="username uname-cta">@username</p>
-                            </div>
-                            <FontAwesomeIcon icon={faEllipsis} />
-                        </section>
-                        <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
-                            {(props) => (
-                            <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
-                                <button> Logout <span>@username</span></button>
-                            </Tooltip>
-                            )}
-                        </Overlay>
+                        {
+                            session ?
+                                <div>
+                                    <section className="user-cta" ref={target} onClick={() => setShow(!show)}>
+                                        <div className="user-name">
+                                            {
+                                                session ?
+                                                    <h3>{session.name}</h3>
+                                                    :
+                                                    <h3>Nama User</h3>
+                                            }
+                                            <p className="username uname-cta">@username</p>
+                                        </div>
+                                        <FontAwesomeIcon icon={faEllipsis} />
+                                    </section>
+                                    <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
+                                        {(props) => (
+                                            <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
+                                                <button><Link onClick={logout} to={'/'}> Logout <span>@username</span></Link></button>
+                                            </Tooltip>
+                                        )}
+                                    </Overlay>
+                                </div>
+                                :
+                                <div>
+                                    <Link to={'/login'} className="btn-tw btn-sidebar" >Login</Link>
+                                </div>
+                        }
+
                     </div>
                 </div>
             </aside>
@@ -89,7 +104,7 @@ const Sidebar = ({ children, setSearch }) => {
                 <div className="sticky">
                     <div className="search-container">
                         <form>
-                            <input type="text" name="search" id="search" placeholder="Search Twitter" />
+                            <input type="text" name="search" id="search" placeholder="Search Twitter" onChange={(e) => setSearch(e.target.value)} />
                         </form>
                     </div>
                     <div className="trending">

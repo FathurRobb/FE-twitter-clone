@@ -89,7 +89,7 @@ const FormRegister = () => {
                 <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChangeConfirmPassword} onBlur={validatePassword} id="" placeholder='Confirm Password' />
                 {error.confirmPassword && <span className='err text-danger'>{error.confirmPassword}</span>}
                 <button className='btn-tw mt-2'>Sign Up</button>
-                <p className="mt-3">Already have account? <Link>Login</Link></p>
+                <p className="mt-3">Already have account? <Link to={'/login'}>Login</Link></p>
             </form>
             <div className="d-grid gap-2">
                 {

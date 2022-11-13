@@ -19,19 +19,20 @@ const FormLogin = () => {
     const [showAlertEmail, setshowAlertEmail] = useState(false);
     let alertEmail;
     if (showAlertEmail) {
-        alertEmail = <AlertAction variant={'danger'} message={'Email Not Found'} onClose={() => setshowAlertEmail(false)}/>
-    } 
+        alertEmail = <AlertAction variant={'danger'} message={'Email Not Found'} onClose={() => setshowAlertEmail(false)} />
+    }
     const [showAlertPassword, setshowAlertPassword] = useState(false);
     let alertPassword;
     if (showAlertPassword) {
-        alertPassword = <AlertAction variant={'danger'} message={'Wrong Password'} onClose={() => setshowAlertPassword(false)}/>
-    } 
+        alertPassword = <AlertAction variant={'danger'} message={'Wrong Password'} onClose={() => setshowAlertPassword(false)} />
+    }
     const getUsers = async () => {
         const checkEmail = await axios.get(`${rootUrl}?email=${form.email}`);
         if (checkEmail.data.length > 0) {
             const checkPassword = bcrypt.compareSync(form.password, checkEmail.data[0].password)
             if (checkPassword) {
                 sessionStorage.setItem('data_user', JSON.stringify(checkEmail.data[0]));
+                console.log(JSON.stringify(checkEmail.data[0]));
                 navigate('/');
             } else {
                 setshowAlertPassword(true)
@@ -46,18 +47,20 @@ const FormLogin = () => {
         event.preventDefault();
         getUsers();
     }
-    
+
     return (
         <section className="register-form">
             <section className="logo mx-auto my-3">
                 <img src={LogoTW} alt="twitter logo" />
             </section>
             <h2 className="text-center">Log in to Twitter</h2>
-            <form>
-                <input type="text" name="username" placeholder='username' id="" />
-                <input type="password" name="password" placeholder='password' id="" />
+            {alertEmail}
+            {alertPassword}
+            <form onSubmit={handleLogin}>
+                <input type="email" placeholder="Enter Email" name="email" value={form.email} onChange={handleChange} required />
+                <input type="password" placeholder="Password" name="password" value={form.password} onChange={handleChange} required />
                 <button className='btn-tw mt-2'>Login</button>
-                <p className="mt-3">Don't have account? <Link>Sign Up</Link></p>
+                <p className="mt-3">Don't have account? <Link to={'/register'}>Sign Up</Link></p>
             </form>
         </section>
         // <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>

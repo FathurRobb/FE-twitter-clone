@@ -24,10 +24,6 @@ const MyPost = () => {
         e.preventDefault()
         navigate('/')
     }
-
-    if (isLoading) {
-        return <div>Loading....</div>;
-      }
     
     return (
         <Sidebar>
@@ -38,7 +34,9 @@ const MyPost = () => {
                         <h4 className="mx-4">My Post</h4>
                     </header>
                     <section>
-                        {posts.map(post => (
+                        {isLoading ? 
+                        <div>Loading....</div> : 
+                        posts.map(post => (
                             // <CardPost key={post.id} post={post} />
                             <CardPostEdit key={post.id} post={post} />
                         ))}

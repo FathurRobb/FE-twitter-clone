@@ -63,7 +63,10 @@ export const deletePost = createAsyncThunk(
     'deletePost',
     async (payload, thunkApi) => {
         try {
-            return await axios.delete(process.env.REACT_APP_API_URL+'posts/'+ payload)
+            await axios.delete(process.env.REACT_APP_API_URL+'posts/'+ payload.postId)
+            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'posts')
+            const filter = data.filter(item => item.userId === +payload.userId)
+            return thunkApi.fulfillWithValue(filter)
         } catch (error) {
             return thunkApi.rejectWithValue(error)
         }
@@ -124,6 +127,14 @@ const posts = createSlice({
             .addCase(createPost.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+            })
+            .addCase(deletePost.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(deletePost.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.posts = action.payload;
+                state.error = null;
             })
             .addCase(deletePost.rejected, (state, action) => {
                 state.isLoading = false;

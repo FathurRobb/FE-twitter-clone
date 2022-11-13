@@ -8,9 +8,10 @@ import ButtonAction from "./ButtonAction";
 
 const CardPostEdit = (post) => {
     const dispatch = useDispatch()
+    const session = JSON.parse(sessionStorage.getItem('data_user'))
 
     const removePost = (postId) => {
-        dispatch(deletePost(+postId))
+        dispatch(deletePost({postId: +postId, userId: +session.id}))
     }
 
     return (

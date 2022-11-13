@@ -13,10 +13,10 @@ const CardPost = (post) => {
     }
 
     return (
-        <section className="card-tweet">
-            <p>display name <span className="username">@username</span></p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In magni beatae placeat id dolores cum rem enim, itaque corrupti non inventore quos laboriosam, maiores deserunt?
+        <section className="card-tweet" style={{ cursor: 'pointer' }}>
+            <p>{post.post.name}<span className="username"> @username</span></p>
+            <p onClick={()=> toDetailPost(post.post.id)}>
+                {post.post.post}
             </p>
             <div className="like-rt-reply">
                 <FontAwesomeIcon className="icon" icon={faComment} />
