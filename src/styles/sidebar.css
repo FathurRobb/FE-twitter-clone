@@ -119,6 +119,11 @@ header div{
     font-family: 'Roboto', sans-serif;
 }
 
+.logout{
+    text-decoration: none;
+    color: #fafafa;
+}
+
 /* ----------------------------- RIGHT SIDEBAR ----------------------------- */
 
 .right-sidebar{
