@@ -13,7 +13,7 @@ export const getComments = createAsyncThunk(
     'getComments',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'comments?_sort=id&_order=DESC')
             const comments = data.filter(comment => comment.postId === payload)
             return thunkApi.fulfillWithValue(comments)
         } catch (error) {
@@ -27,7 +27,7 @@ export const createComment = createAsyncThunk(
     async (payload, thunkApi) => {
         try {
             await axios.post(process.env.REACT_APP_API_URL+'comments', payload)
-            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments?_sort=id&_order=DESC')
             const comments = data.filter(comment => comment.postId === payload.postId)
             return thunkApi.fulfillWithValue(comments)
         } catch (error) {
@@ -41,7 +41,7 @@ export const deleteComment = createAsyncThunk(
     async (payload, thunkApi) => {
         try {
             await axios.delete(process.env.REACT_APP_API_URL+'comments/'+payload.commentId)
-            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments?_sort=id&_order=DESC')
             const comments = data.filter(comment => comment.postId === payload.postId)
             return thunkApi.fulfillWithValue(comments)
         } catch (error) {

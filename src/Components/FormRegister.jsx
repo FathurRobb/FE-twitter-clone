@@ -12,6 +12,7 @@ const rootUrl = `${process.env.REACT_APP_API_URL}users`
 const FormRegister = () => {
     const navigate = useNavigate();
     const [name, handleChangeName] = useInput();
+    const [username, handleChangeUsername] = useInput();
     const [email, handleChangeEmail] = useInput();
     const [password, handleChangePassword] = useInput();
     const [confirmPassword, handleChangeConfirmPassword] = useInput();
@@ -57,6 +58,7 @@ const FormRegister = () => {
     const addUser = async () => {
         await axios.post(rootUrl, {
             name: name,
+            username: username,
             email: email,
             password: hashPassword
         });
@@ -64,7 +66,8 @@ const FormRegister = () => {
 
     const checkUser = async () => {
         const checkEmail = await axios.get(`${rootUrl}?email=${email}`);
-        if (checkEmail.data.length > 0) {
+        const checkUsername = await axios.get(`${rootUrl}?username=${username}`)
+        if (checkEmail.data.length > 0 || checkUsername.data.length > 0) {
             setshowAlertEmail(true);
         } else {
             addUser();
@@ -82,7 +85,7 @@ const FormRegister = () => {
             <h2>Create Your Account</h2>
             {alertEmail}
             <form onSubmit={handleSignin}>
-                <input type="text" name="username" placeholder='username' id="" />
+                <input type="text" name="username" placeholder='Username' id="" onChange={handleChangeUsername} />
                 <input type="text" name="name" value={name} onChange={handleChangeName}  placeholder='Name' id="" />
                 <input type="email" name="email" placeholder='Email' id="" />
                 <input type="password" name="password" value={password} onChange={handleChangePassword} onBlur={validatePassword} placeholder='password' id="" />

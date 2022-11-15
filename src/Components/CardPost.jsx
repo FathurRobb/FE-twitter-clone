@@ -3,21 +3,27 @@ import { faRetweet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { deletePost } from "../redux/modules/posts";
 
 const CardPost = ({post}) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const toDetailPost = (postId) => {
         navigate(`/post/${postId}`)
+    }
+
+    const removePost = (postId) => {
+        dispatch(deletePost({ postId: postId, userId: post.userId }))
     }
 
     const dataUser = JSON.parse(sessionStorage.getItem('data_user'))
 
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
-            <p>{post.name}<span className="username"> @username</span></p>
-            {console.log(post)}
+            <p>{post.name}<span className="username"> @{post.username}</span></p>
             <p onClick={()=> toDetailPost(post.id)}>
                 {post.post}
             </p>
@@ -26,7 +32,7 @@ const CardPost = ({post}) => {
                 <FontAwesomeIcon className="icon" icon={faRetweet} />
                 <FontAwesomeIcon className="icon" icon={faHeart} />
                 {
-                    post.userId === dataUser.id ? <FontAwesomeIcon className="icon" icon={faTrashCan} /> : ''
+                    dataUser&&  post.userId === dataUser.id ? <FontAwesomeIcon className="icon" onClick={()=>removePost(post.id)} icon={faTrashCan} /> : ''
                 }
             </div>
 

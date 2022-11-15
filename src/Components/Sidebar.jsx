@@ -93,20 +93,19 @@ const Sidebar = ({ children, setSearch }) => {
                                             :
                                             <h3>Nama User</h3>
                                     }
-                                    <p className="username uname-cta">@username</p>
+                                    <p className="username uname-cta">@{session.username}</p>
                                 </div>
                                 <FontAwesomeIcon icon={faEllipsis} />
                             </section>
                             <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
                                 {(props) => (
                                     <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
-                                        <button><Link onClick={logout} to={'/'} className="logout"> Logout <span>@username</span></Link></button>
+                                        <button><Link onClick={logout} to={'/'} className="logout"> Logout <span>@{session.username}</span></Link></button>
                                     </Tooltip>
                                 )}
                             </Overlay>
                         </div> :
                         ''
-
                     }
                 </div>
             </aside>

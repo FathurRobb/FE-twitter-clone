@@ -31,7 +31,7 @@ const DetailPost = () => {
     }
 
     const makeComment = () => {
-        dispatch(createComment({ body: comment, postId: +id, userId: session.id }))
+        dispatch(createComment({ body: comment, postId: +id, userId: session.id, userName: session.name }))
         setComment('')
     }
 
@@ -58,51 +58,54 @@ const DetailPost = () => {
                 </header>
                 {
                     isLoading ?
-                    <div>Loading....</div>
-                    :
-                    <div>
-                        <section className="my-4 pb-3 px-3">
-                            <p className="detail-post pb-3 px-3">
-                                {post ? post.post : ''}
-                            </p>
-                            <div className="like-rt-reply detail-post-cta">
-                                <FontAwesomeIcon className="icon" icon={faComment} />
-                                <FontAwesomeIcon className="icon" icon={faRetweet} />
-                                <FontAwesomeIcon className="icon" icon={faHeart} />
-                            </div>
-                            <form className="reply-tweet">
-                                <input
-                                    type="text"
-                                    name="tweet"
-                                    id="tweet"
-                                    placeholder="Tweet Your Reply"
-                                    className='new-tweet'
-                                    value={comment}
-                                    onChange={handleCommentChange}
-                                    disabled={!session}
-                                />
-                                <button className='btn-tw edit-tweet' onClick={handleSubmit}>Reply</button>
-                            </form>
-                        </section>
-                        <section className="px-3">
-                            {comments.map(comment => (
-                                <section className="card-tweet" style={{ cursor: 'pointer' }} key={comment.id}>
-                                    <p>{comment.body}</p>
-                                    <div className="like-rt-reply">
-                                        <FontAwesomeIcon className="icon" icon={faComment} />
-                                        <FontAwesomeIcon className="icon" icon={faRetweet} />
-                                        <FontAwesomeIcon className="icon" icon={faHeart} />
-                                        {
-                                            session ? 
-                                            comment.userId === session.id ?
-                                            <FontAwesomeIcon className="icon" icon={faTrashCan} onClick={() => removeComment(comment.id)} text={'Delete'} /> : '' 
-                                            : ''
-                                        }
-                                    </div>
-                                </section>
-                            ))}
-                        </section>
-                    </div>
+                        <div>Loading....</div>
+                        :
+                        <div>
+                            <section className="my-4 pb-3 px-3">
+                                <p className="detail-post pb-3 px-3">
+                                    {post ? post.post : ''}
+                                </p>
+                                <div className="like-rt-reply detail-post-cta">
+                                    <FontAwesomeIcon className="icon" icon={faComment} />
+                                    <FontAwesomeIcon className="icon" icon={faRetweet} />
+                                    <FontAwesomeIcon className="icon" icon={faHeart} />
+                                </div>
+                                <form className="reply-tweet">
+                                    <input
+                                        type="text"
+                                        name="tweet"
+                                        id="tweet"
+                                        placeholder="Tweet Your Reply"
+                                        className='new-tweet'
+                                        maxLength={60}
+                                        value={comment}
+                                        onChange={handleCommentChange}
+                                        disabled={!session}
+                                    />
+                                    <button className='btn-tw edit-tweet' onClick={handleSubmit}>Reply</button>
+                                </form>
+                                <p className='ps-4'> {comment.length} / 60</p>
+                            </section>
+                            <section className="px-3">
+                                {comments.map(comment => (
+                                    <section className="card-tweet" style={{ cursor: 'pointer' }} key={comment.id}>
+                                        <p>{comment.userName}<span className="username"> @username</span></p>
+                                        <p>{comment.body}</p>
+                                        <div className="like-rt-reply">
+                                            <FontAwesomeIcon className="icon" icon={faComment} />
+                                            <FontAwesomeIcon className="icon" icon={faRetweet} />
+                                            <FontAwesomeIcon className="icon" icon={faHeart} />
+                                            {
+                                                session ?
+                                                    comment.userId === session.id ?
+                                                        <FontAwesomeIcon className="icon" icon={faTrashCan} onClick={() => removeComment(comment.id)} text={'Delete'} /> : ''
+                                                    : ''
+                                            }
+                                        </div>
+                                    </section>
+                                ))}
+                            </section>
+                        </div>
                 }
             </Container>
         </Sidebar>
