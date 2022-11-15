@@ -17,7 +17,6 @@ const Sidebar = ({ children, setSearch }) => {
 
     const logout = () => {
         sessionStorage.clear()
-        navigate('/')
         this.shouldComponentUpdate()
     }
 
@@ -29,55 +28,43 @@ const Sidebar = ({ children, setSearch }) => {
                         <section className="logo">
                             <img src={LogoTW} alt="twitter logo" />
                         </section>
-                        {
-                            session ?
-                                <section className="menu">
-                                    <ul>
-                                        <li><Link to='/'>
-                                            <FontAwesomeIcon icon={faHome} />
-                                            <span>Home</span>
-                                        </Link></li>
-                                        <li><Link to='#'>
-                                            <FontAwesomeIcon icon={faHashtag} />
-                                            <span>Explore</span>
-                                        </Link></li>
-                                        <li><Link to='#'>
-                                            <FontAwesomeIcon icon={faBell} />
-                                            <span>Notifications</span>
-                                        </Link></li>
-                                        <li><Link to='#'>
-                                            <FontAwesomeIcon icon={faEnvelope} />
-                                            <span>Messages</span>
-                                        </Link></li>
-                                        <li><Link to='#'>
-                                            <FontAwesomeIcon icon={faBookmark} />
-                                            <span>Bookmarks</span>
-                                        </Link></li>
-                                        <li><Link to='#'>
-                                            <FontAwesomeIcon icon={faRectangleList} />
-                                            <span>Lists</span>
-                                        </Link></li>
-                                        <li><Link to='/profile'>
-                                            <FontAwesomeIcon icon={faUser} />
-                                            <span>Profile</span>
-                                        </Link></li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faEllipsis} />
-                                            <span>More</span>
-                                        </li>
-                                    </ul>
-                                    <button className="btn-tw btn-sidebar">Tweet</button>
-                                </section>
-                                :
-                                <section className="menu">
-                                    <ul>
-                                        <li><Link to='#'>
-                                            <FontAwesomeIcon icon={faHashtag} />
-                                            <span>Explore</span>
-                                        </Link></li>
-                                    </ul>
-                                </section>
-                        }
+                        <section className="menu">
+                            <ul>
+                                <li><Link to='/'>
+                                    <FontAwesomeIcon icon={faHome} />
+                                    <span>Home</span>
+                                </Link></li>
+                                <li><Link to='#'>
+                                    <FontAwesomeIcon icon={faHashtag} />
+                                    <span>Explore</span>
+                                </Link></li>
+                                <li><Link to='#'>
+                                    <FontAwesomeIcon icon={faBell} />
+                                    <span>Notifications</span>
+                                </Link></li>
+                                <li><Link to='#'>
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                    <span>Messages</span>
+                                </Link></li>
+                                <li><Link to='#'>
+                                    <FontAwesomeIcon icon={faBookmark} />
+                                    <span>Bookmarks</span>
+                                </Link></li>
+                                <li><Link to='#'>
+                                    <FontAwesomeIcon icon={faRectangleList} />
+                                    <span>Lists</span>
+                                </Link></li>
+                                <li><Link to='/profile'>
+                                    <FontAwesomeIcon icon={faUser} />
+                                    <span>Profile</span>
+                                </Link></li>
+                                <li>
+                                    <FontAwesomeIcon icon={faEllipsis} />
+                                    <span>More</span>
+                                </li>
+                            </ul>
+                            <button className="btn-tw btn-sidebar">Tweet</button>
+                        </section>
                     </div>
                     <div>
                         {
@@ -98,14 +85,14 @@ const Sidebar = ({ children, setSearch }) => {
                                     <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
                                         {(props) => (
                                             <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
-                                                <button style={{border: 'none'}} onClick={logout}>Logout <span>@username</span></button>
+                                                <button><Link onClick={logout} to={'/'}> Logout <span>@username</span></Link></button>
                                             </Tooltip>
                                         )}
                                     </Overlay>
                                 </div>
                                 :
                                 <div>
-                                    {/* <Link to={'/login'} className="btn-tw btn-sidebar" >Login</Link> */}
+                                    <Link to={'/login'} className="btn-tw btn-sidebar" >Login</Link>
                                 </div>
                         }
 
