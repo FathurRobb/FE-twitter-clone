@@ -64,9 +64,9 @@ const Profile = () => {
                     ))}
             </section>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} className="modal-edit-profile">
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Post</Modal.Title>
+                    <Modal.Title>Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
