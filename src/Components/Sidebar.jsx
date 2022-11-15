@@ -17,6 +17,7 @@ const Sidebar = ({ children, setSearch }) => {
 
     const logout = () => {
         sessionStorage.clear()
+        navigate('/')
         this.shouldComponentUpdate()
     }
 
@@ -28,7 +29,46 @@ const Sidebar = ({ children, setSearch }) => {
                         <section className="logo">
                             <img src={LogoTW} alt="twitter logo" />
                         </section>
-                        <section className="menu">
+                        {
+                            session ?
+                            <section className="menu">
+                                <ul>
+                                    <li><Link to='/'>
+                                        <FontAwesomeIcon icon={faHome} />
+                                        <span>Home</span>
+                                    </Link></li>
+                                    <li><Link to='#'>
+                                        <FontAwesomeIcon icon={faHashtag} />
+                                        <span>Explore</span>
+                                    </Link></li>
+                                    <li><Link to='#'>
+                                        <FontAwesomeIcon icon={faBell} />
+                                        <span>Notifications</span>
+                                    </Link></li>
+                                    <li><Link to='#'>
+                                        <FontAwesomeIcon icon={faEnvelope} />
+                                        <span>Messages</span>
+                                    </Link></li>
+                                    <li><Link to='#'>
+                                        <FontAwesomeIcon icon={faBookmark} />
+                                        <span>Bookmarks</span>
+                                    </Link></li>
+                                    <li><Link to='#'>
+                                        <FontAwesomeIcon icon={faRectangleList} />
+                                        <span>Lists</span>
+                                    </Link></li>
+                                    <li><Link to='/profile'>
+                                        <FontAwesomeIcon icon={faUser} />
+                                        <span>Profile</span>
+                                    </Link></li>
+                                    <li>
+                                        <FontAwesomeIcon icon={faEllipsis} />
+                                        <span>More</span>
+                                    </li>
+                                </ul>
+                                <button className="btn-tw btn-sidebar">Tweet</button>
+                            </section> :
+                            <section className="menu">
                             <ul>
                                 <li><Link to='/'>
                                     <FontAwesomeIcon icon={faHome} />
@@ -38,65 +78,37 @@ const Sidebar = ({ children, setSearch }) => {
                                     <FontAwesomeIcon icon={faHashtag} />
                                     <span>Explore</span>
                                 </Link></li>
-                                <li><Link to='#'>
-                                    <FontAwesomeIcon icon={faBell} />
-                                    <span>Notifications</span>
-                                </Link></li>
-                                <li><Link to='#'>
-                                    <FontAwesomeIcon icon={faEnvelope} />
-                                    <span>Messages</span>
-                                </Link></li>
-                                <li><Link to='#'>
-                                    <FontAwesomeIcon icon={faBookmark} />
-                                    <span>Bookmarks</span>
-                                </Link></li>
-                                <li><Link to='#'>
-                                    <FontAwesomeIcon icon={faRectangleList} />
-                                    <span>Lists</span>
-                                </Link></li>
-                                <li><Link to='/profile'>
-                                    <FontAwesomeIcon icon={faUser} />
-                                    <span>Profile</span>
-                                </Link></li>
-                                <li>
-                                    <FontAwesomeIcon icon={faEllipsis} />
-                                    <span>More</span>
-                                </li>
                             </ul>
-                            <button className="btn-tw btn-sidebar">Tweet</button>
+                            {/* <button className="btn-tw btn-sidebar logout"><Link className="logout" to={'/login'}>Login</Link></button> */}
                         </section>
-                    </div>
-                    <div>
-                        {
-                            session ?
-                                <div>
-                                    <section className="user-cta" ref={target} onClick={() => setShow(!show)}>
-                                        <div className="user-name">
-                                            {
-                                                session ?
-                                                    <h3>{session.name}</h3>
-                                                    :
-                                                    <h3>Nama User</h3>
-                                            }
-                                            <p className="username uname-cta">@username</p>
-                                        </div>
-                                        <FontAwesomeIcon icon={faEllipsis} />
-                                    </section>
-                                    <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
-                                        {(props) => (
-                                            <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
-                                                <button><Link onClick={logout} to={'/'}> Logout <span>@username</span></Link></button>
-                                            </Tooltip>
-                                        )}
-                                    </Overlay>
-                                </div>
-                                :
-                                <div>
-                                    <Link to={'/login'} className="btn-tw btn-sidebar" >Login</Link>
-                                </div>
                         }
-
                     </div>
+                    {
+                        session ?
+                        <div>
+                            <section className="user-cta" ref={target} onClick={() => setShow(!show)}>
+                                <div className="user-name">
+                                    {
+                                        session ?
+                                            <h3>{session.name}</h3>
+                                            :
+                                            <h3>Nama User</h3>
+                                    }
+                                    <p className="username uname-cta">@username</p>
+                                </div>
+                                <FontAwesomeIcon icon={faEllipsis} />
+                            </section>
+                            <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
+                                {(props) => (
+                                    <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
+                                        <button style={{border: 'none'}} onClick={logout}>Logout <span>@username</span></button>
+                                    </Tooltip>
+                                )}
+                            </Overlay>
+                        </div> :
+                        ''
+
+                    }
                 </div>
             </aside>
             <section className="main-content">{children}</section>

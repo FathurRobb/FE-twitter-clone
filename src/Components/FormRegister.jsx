@@ -7,7 +7,12 @@ import bcrypt from 'bcryptjs';
 import useInput from '../hooks/useInput';
 import AlertAction from './AlertAction';
 
-const rootUrl = `${process.env.REACT_APP_API_URL}users`
+let url;
+process.env.NODE_ENV == 'development' ? 
+    url = process.env.REACT_APP_DEV_API_URL
+    :
+    url = process.env.REACT_APP_API_URL
+const rootUrl = `${url}users`
 
 const FormRegister = () => {
     const navigate = useNavigate();

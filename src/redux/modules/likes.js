@@ -7,15 +7,21 @@ const initialState = {
     error: null,
 };
 
+let url;
+process.env.NODE_ENV == 'development' ? 
+    url = process.env.REACT_APP_DEV_API_URL
+    :
+    url = process.env.REACT_APP_API_URL
+
 export const getLikes = createAsyncThunk(
     'getLikes',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(process.env.REACT_API_URL + 'likes');
+            const { data } = await axios.get(url + 'likes');
             const likes = data.filter(like => like.userId === payload);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
-            return thunkApi.rejectWithValue(error);
+            return thunkApi.rejectedWithValue(error);
         }
     }
 );
@@ -24,11 +30,11 @@ export const getLikes = createAsyncThunk(
 //     'getCountLikes',
 //     async (payload, thunkApi) => {
 //         try {
-//             const { data } = await axios.get(process.env.REACT_API_URL + 'likes');
+//             const { data } = await axios.get(url + 'likes');
 //             const countLikes = data.filter(like => like.postId === payload);
 //             return thunkApi.fulfillWithValue(countLikes);
 //         } catch (error) {
-//             return thunkApi.rejectWithValue(error);
+//             return thunkApi.rejectedWithValue(error);
 //         }
 //     }
 // );
@@ -37,12 +43,12 @@ export const createLikes = createAsyncThunk(
     'createLikes',
     async (payload, thunkApi) => {
         try {
-            await axios.post(process.env.REACT_APP_API_URL+'likes/', payload)
-            const { data } = await axios.get(process.env.REACT_API_URL + 'likes');
+            await axios.post(url+'likes/', payload)
+            const { data } = await axios.get(url + 'likes');
             const likes = data.filter(like => like.userId === payload);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
-            return thunkApi.rejectWithValue(error);
+            return thunkApi.rejectedWithValue(error);
         }
     }
 );
@@ -51,12 +57,12 @@ export const cancelLikes = createAsyncThunk(
     'cancelLikes',
     async (payload, thunkApi) => {
         try {
-            await axios.delete(process.env.REACT_APP_API_URL+'likes/', payload.likeId)
-            const { data } = await axios.get(process.env.REACT_API_URL + 'likes');
+            await axios.delete(url+'likes/', payload)
+            const { data } = await axios.get(url + 'likes');
             const likes = data.filter(like => like.userId === payload);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
-            return thunkApi.rejectWithValue(error);
+            return thunkApi.rejectedWithValue(error);
         }
     }
 );
@@ -75,7 +81,7 @@ const likes = createSlice({
                 state.likes = action.payload;
                 state.error = null
             })
-            .addCase(getLikes.reject, (state, action) => {
+            .addCase(getLikes.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
                 console.log("ada error",action.payload)
@@ -88,7 +94,7 @@ const likes = createSlice({
                 state.likes = action.payload;
                 state.error = null
             })
-            .addCase(createLikes.reject, (state, action) => {
+            .addCase(createLikes.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             })
@@ -100,12 +106,11 @@ const likes = createSlice({
                 state.likes = action.payload;
                 state.error = null
             })
-            .addCase(cancelLikes.reject, (state, action) => {
+            .addCase(cancelLikes.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             })
     }, 
 });
 
-export const {} = likes.actions;
 export default likes.reducer;

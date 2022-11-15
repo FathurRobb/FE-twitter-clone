@@ -7,6 +7,11 @@ import { Form, Modal } from "react-bootstrap";
 import ButtonAction from "../Components/ButtonAction";
 import axios from "axios";
 
+let url;
+process.env.NODE_ENV == 'development' ? 
+    url = process.env.REACT_APP_DEV_API_URL
+    :
+    url = process.env.REACT_APP_API_URL
 
 const Profile = () => {
     const dispatch = useDispatch()
@@ -30,8 +35,8 @@ const Profile = () => {
     }
 
     const patchName = async () => {
-        await axios.patch(process.env.REACT_APP_API_URL+'users/'+session.id, { name: name });
-        const user = await axios.get(`${process.env.REACT_APP_API_URL}users?email=${session.email}`)
+        await axios.patch(url+'users/'+session.id, { name: name });
+        const user = await axios.get(`${url}users?email=${session.email}`)
         sessionStorage.setItem('data_user', JSON.stringify(user.data[0]))
         dispatch(getPostsByUserID(session.id));
     }
@@ -64,9 +69,9 @@ const Profile = () => {
                     ))}
             </section>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} className="modal-edit-profile">
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Post</Modal.Title>
+                    <Modal.Title>Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>

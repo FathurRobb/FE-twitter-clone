@@ -22,3 +22,10 @@
     width: fit-content;
     padding: 0 0.5rem 0.5rem 0.5rem;
 }
+
+.modal-content{
+    background-color: #121213 !important;
+    color: #fafafa !important;
+    border-radius: 1rem;
+    box-shadow: 0.4rem 0.5rem 1rem #1b1b1b;
+}

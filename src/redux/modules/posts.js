@@ -8,11 +8,17 @@ const initialState = {
     post: {},
 }
 
+let url;
+process.env.NODE_ENV == 'development' ? 
+    url = process.env.REACT_APP_DEV_API_URL
+    :
+    url = process.env.REACT_APP_API_URL
+
 export const getPosts = createAsyncThunk(
     'getPosts',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'posts')
+            const { data } = await axios.get(url + 'posts')
             return thunkApi.fulfillWithValue(data)
         } catch (error) {
             return thunkApi.rejectWithValue(error);
@@ -24,7 +30,7 @@ export const getPostsByID = createAsyncThunk(
     'getPostByID',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'posts')
+            const { data } = await axios.get(url + 'posts')
             const filter = data.find(item => item.id === payload)
             return thunkApi.fulfillWithValue(filter)
         } catch (error) {
@@ -37,7 +43,7 @@ export const getPostsByUserID = createAsyncThunk(
     'getPostsByUserID',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'posts')
+            const { data } = await axios.get(url + 'posts')
             const filter = data.filter(item => item.userId === +payload)
             return thunkApi.fulfillWithValue(filter)
         } catch (error) {
@@ -50,8 +56,8 @@ export const createPost = createAsyncThunk(
     'createPost',
     async (payload, thunkApi) => {
         try {
-            await axios.post(process.env.REACT_APP_API_URL+'posts/', payload)
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'posts')
+            await axios.post(url+'posts/', payload)
+            const { data } = await axios.get(url + 'posts')
             return thunkApi.fulfillWithValue(data)
         } catch (error) {
             return thunkApi.rejectWithValue(error)
@@ -63,8 +69,8 @@ export const deletePost = createAsyncThunk(
     'deletePost',
     async (payload, thunkApi) => {
         try {
-            await axios.delete(process.env.REACT_APP_API_URL+'posts/'+ payload.postId)
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'posts')
+            await axios.delete(url+'posts/'+ payload.postId)
+            const { data } = await axios.get(url + 'posts')
             const filter = data.filter(item => item.userId === +payload.userId)
             return thunkApi.fulfillWithValue(filter)
         } catch (error) {

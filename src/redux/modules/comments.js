@@ -7,13 +7,17 @@ const initialState = {
     error: null,
 }
 
-
+let url;
+process.env.NODE_ENV == 'development' ? 
+    url = process.env.REACT_APP_DEV_API_URL
+    :
+    url = process.env.REACT_APP_API_URL
 
 export const getComments = createAsyncThunk(
     'getComments',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            const { data } = await axios.get(url + 'comments')
             const comments = data.filter(comment => comment.postId === payload)
             return thunkApi.fulfillWithValue(comments)
         } catch (error) {
@@ -26,8 +30,8 @@ export const createComment = createAsyncThunk(
     'createComments',
     async (payload, thunkApi) => {
         try {
-            await axios.post(process.env.REACT_APP_API_URL+'comments', payload)
-            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            await axios.post(url+'comments', payload)
+            const { data } =  await axios.get(url + 'comments')
             const comments = data.filter(comment => comment.postId === payload.postId)
             return thunkApi.fulfillWithValue(comments)
         } catch (error) {
@@ -40,8 +44,8 @@ export const deleteComment = createAsyncThunk(
     'deleteComments',
     async (payload, thunkApi) => {
         try {
-            await axios.delete(process.env.REACT_APP_API_URL+'comments/'+payload.commentId)
-            const { data } =  await axios.get(process.env.REACT_APP_API_URL + 'comments')
+            await axios.delete(url+'comments/'+payload.commentId)
+            const { data } =  await axios.get(url + 'comments')
             const comments = data.filter(comment => comment.postId === payload.postId)
             return thunkApi.fulfillWithValue(comments)
         } catch (error) {

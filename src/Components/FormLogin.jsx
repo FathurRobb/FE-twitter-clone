@@ -7,7 +7,13 @@ import { useNavigate } from "react-router-dom";
 import LogoTW from '../assets/twitter-logo-dark.png'
 import { Link } from "react-router-dom";
 
-const rootUrl = `${process.env.REACT_APP_API_URL}users`
+let url;
+process.env.NODE_ENV == 'development' ? 
+    url = process.env.REACT_APP_DEV_API_URL
+    :
+    url = process.env.REACT_APP_API_URL
+
+const rootUrl = `${url}users`
 // PASSWORD = admin123
 
 const FormLogin = () => {
@@ -32,7 +38,7 @@ const FormLogin = () => {
             const checkPassword = bcrypt.compareSync(form.password, checkEmail.data[0].password)
             if (checkPassword) {
                 sessionStorage.setItem('data_user', JSON.stringify(checkEmail.data[0]));
-                console.log(JSON.stringify(checkEmail.data[0]));
+                // console.log(JSON.stringify(checkEmail.data[0]));
                 navigate('/');
             } else {
                 setshowAlertPassword(true)
