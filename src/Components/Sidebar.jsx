@@ -45,7 +45,7 @@ const Sidebar = ({ children, setSearch }) => {
                                         <FontAwesomeIcon icon={faBell} />
                                         <span>Notifications</span>
                                     </Link></li>
-                                    <li><Link to='#'>
+                                    <li><Link to='/messages'>
                                         <FontAwesomeIcon icon={faEnvelope} />
                                         <span>Messages</span>
                                     </Link></li>
@@ -53,7 +53,7 @@ const Sidebar = ({ children, setSearch }) => {
                                         <FontAwesomeIcon icon={faBookmark} />
                                         <span>Bookmarks</span>
                                     </Link></li>
-                                    <li><Link to='#'>
+                                    <li><Link to='/lists'>
                                         <FontAwesomeIcon icon={faRectangleList} />
                                         <span>Lists</span>
                                     </Link></li>

@@ -5,6 +5,7 @@ const initialState = {
     likes: [],
     isLoading: false,
     error: null,
+    countLikes: [],
 };
 
 let url;
@@ -21,7 +22,24 @@ export const getLikes = createAsyncThunk(
             const likes = data.filter(like => like.userId === payload);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
-            return thunkApi.rejectedWithValue(error);
+            return thunkApi.rejectWithValue(error);
+        }
+    }
+);
+
+export const getCountLikes = createAsyncThunk(
+    'getCountLikes',
+    async (payload, thunkApi) => {
+        try {
+            const { data } = await axios.get(url + 'likes');
+            let countLikes = data.reduce((acc, curr)=>{
+                const str = JSON.stringify(curr);
+                data[str] = (acc[str] || 0) + 1;
+                return data;
+             }, {});
+            return thunkApi.fulfillWithValue(countLikes);
+        } catch (error) {
+            return thunkApi.rejectWithValue(error);
         }
     }
 );
@@ -30,11 +48,10 @@ export const getLikes = createAsyncThunk(
 //     'getCountLikes',
 //     async (payload, thunkApi) => {
 //         try {
-//             const { data } = await axios.get(url + 'likes');
-//             const countLikes = data.filter(like => like.postId === payload);
-//             return thunkApi.fulfillWithValue(countLikes);
+//             const { data } = await axios.get(url + 'likes?postId=',payload);
+//             return thunkApi.fulfillWithValue(data);
 //         } catch (error) {
-//             return thunkApi.rejectedWithValue(error);
+//             return thunkApi.rejectWithValue(error);
 //         }
 //     }
 // );
@@ -48,7 +65,7 @@ export const createLikes = createAsyncThunk(
             const likes = data.filter(like => like.userId === payload.userId);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
-            return thunkApi.rejectedWithValue(error);
+            return thunkApi.rejectWithValue(error);
         }
     }
 );
@@ -62,7 +79,7 @@ export const cancelLikes = createAsyncThunk(
             const likes = data.filter(like => like.userId === payload);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
-            return thunkApi.rejectedWithValue(error);
+            return thunkApi.rejectWithValue(error);
         }
     }
 );
@@ -106,6 +123,19 @@ const likes = createSlice({
                 state.error = null
             })
             .addCase(cancelLikes.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(getCountLikes.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getCountLikes.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.countLikes = action.payload;
+                state.error = null
+                console.log(state.countLikes)
+            })
+            .addCase(getCountLikes.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             })

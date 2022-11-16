@@ -30,11 +30,11 @@ const CardPost = ({post}) => {
     }, [dispatch])
 
     const { likes } = useSelector(state => state.likes)
+    // const { countLikes } = useSelector(state => state.likes)
     // console.log(likes)
 
     let giveLike;
     let undoLike;
-    let likedPost;
     if(dataUser) {
         giveLike = (postId) => {
             // console.log(postId)
