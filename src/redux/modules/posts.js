@@ -18,7 +18,7 @@ export const getPosts = createAsyncThunk(
     'getPosts',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(url + 'posts')
+            const { data } = await axios.get(url + `posts?_sort=id&_order=DESC`)
             return thunkApi.fulfillWithValue(data)
         } catch (error) {
             return thunkApi.rejectWithValue(error);
@@ -30,7 +30,7 @@ export const getPostsByID = createAsyncThunk(
     'getPostByID',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(url + 'posts')
+            const { data } = await axios.get(url + 'posts?_sort=id&_order=DESC')
             const filter = data.find(item => item.id === payload)
             return thunkApi.fulfillWithValue(filter)
         } catch (error) {
@@ -43,7 +43,7 @@ export const getPostsByUserID = createAsyncThunk(
     'getPostsByUserID',
     async (payload, thunkApi) => {
         try {
-            const { data } = await axios.get(url + 'posts')
+            const { data } = await axios.get(url + 'posts?_sort=id&_order=DESC')
             const filter = data.filter(item => item.userId === +payload)
             return thunkApi.fulfillWithValue(filter)
         } catch (error) {
@@ -57,7 +57,7 @@ export const createPost = createAsyncThunk(
     async (payload, thunkApi) => {
         try {
             await axios.post(url+'posts/', payload)
-            const { data } = await axios.get(url + 'posts')
+            const { data } = await axios.get(url + 'posts?_sort=id&_order=DESC')
             return thunkApi.fulfillWithValue(data)
         } catch (error) {
             return thunkApi.rejectWithValue(error)
@@ -70,7 +70,7 @@ export const deletePost = createAsyncThunk(
     async (payload, thunkApi) => {
         try {
             await axios.delete(url+'posts/'+ payload.postId)
-            const { data } = await axios.get(url + 'posts')
+            const { data } = await axios.get(url + 'posts?_sort=id&_order=DESC')
             const filter = data.filter(item => item.userId === +payload.userId)
             return thunkApi.fulfillWithValue(filter)
         } catch (error) {
@@ -92,6 +92,8 @@ const posts = createSlice({
             .addCase(getPosts.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.posts = action.payload;
+                state.posts.concat(action.payload);
+                // console.log(state.posts);
                 state.error = null;
             })
             .addCase(getPosts.rejected, (state, action) => {

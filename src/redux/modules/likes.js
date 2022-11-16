@@ -45,7 +45,7 @@ export const createLikes = createAsyncThunk(
         try {
             await axios.post(url+'likes/', payload)
             const { data } = await axios.get(url + 'likes');
-            const likes = data.filter(like => like.userId === payload);
+            const likes = data.filter(like => like.userId === payload.userId);
             return thunkApi.fulfillWithValue(likes);
         } catch (error) {
             return thunkApi.rejectedWithValue(error);
@@ -57,7 +57,7 @@ export const cancelLikes = createAsyncThunk(
     'cancelLikes',
     async (payload, thunkApi) => {
         try {
-            await axios.delete(url+'likes/', payload)
+            await axios.delete(url+'likes/'+payload.id)
             const { data } = await axios.get(url + 'likes');
             const likes = data.filter(like => like.userId === payload);
             return thunkApi.fulfillWithValue(likes);
@@ -84,7 +84,6 @@ const likes = createSlice({
             .addCase(getLikes.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
-                console.log("ada error",action.payload)
             })
             .addCase(createLikes.pending, (state) => {
                 state.isLoading = true;

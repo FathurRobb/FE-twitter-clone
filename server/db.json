@@ -7,12 +7,6 @@
       "id": 2
     },
     {
-      "post": "Test",
-      "userId": 0,
-      "name": "Test",
-      "id": 3
-    },
-    {
       "post": "tes like",
       "userId": 2,
       "name": "Ahmad Hasan Ali",
@@ -54,104 +48,9 @@
   ],
   "likes": [
     {
-      "id": 1,
-      "userId": 1,
-      "postId": 3
-    },
-    {
-      "postId": 4,
-      "userId": 1,
-      "id": 2
-    },
-    {
-      "postId": 4,
-      "userId": 1,
-      "id": 3
-    },
-    {
       "postId": 2,
       "userId": 2,
       "id": 4
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 5
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 6
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 7
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 8
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 9
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 10
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 11
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 12
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 13
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 14
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 15
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 16
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 17
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 18
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 19
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 20
     },
     {
       "postId": 2,
@@ -159,154 +58,9 @@
       "id": 21
     },
     {
-      "postId": 3,
-      "userId": 2,
-      "id": 22
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 23
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 24
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 25
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 26
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 27
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 28
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 29
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 30
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 31
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 32
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 33
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 34
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 35
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 36
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 37
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 38
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 39
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 40
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 41
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 42
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 43
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 44
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 45
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 46
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 47
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 48
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 49
-    },
-    {
       "postId": 4,
       "userId": 2,
       "id": 50
-    },
-    {
-      "postId": 3,
-      "userId": 2,
-      "id": 51
     },
     {
       "postId": 2,
@@ -330,8 +84,13 @@
     },
     {
       "postId": 5,
-      "userId": 3,
+      "userId": 1,
       "id": 56
+    },
+    {
+      "postId": 5,
+      "userId": 3,
+      "id": 57
     }
   ]
 }

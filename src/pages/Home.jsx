@@ -28,7 +28,7 @@ const Home = () => {
     const session = JSON.parse(sessionStorage.getItem("data_user"))
 
     const makePost = async () => {
-        dispatch(createPost({ post, userId: session.id, name: session.name }))
+        dispatch(createPost({ post, userId: session.id, name: session.name, username: session.username }))
         setPost('')
     }
 
@@ -47,10 +47,12 @@ const Home = () => {
                         id="tweet"
                         placeholder="What's happening?"
                         className='new-tweet'
+                        maxLength={60}
                         value={post}
                         onChange={handlePostChange}
                         disabled={!session}
                     />
+                    <p className='ps-4'> {post.length} / 60</p>
                     <div><button className='btn-tw add-tweet' onClick={handleSubmit}>Tweet</button></div>
                 </header>
                 {!isLoading ? posts.filter(item => {

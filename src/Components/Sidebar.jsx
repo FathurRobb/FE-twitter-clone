@@ -18,7 +18,7 @@ const Sidebar = ({ children, setSearch }) => {
     const logout = () => {
         sessionStorage.clear()
         navigate('/')
-        this.shouldComponentUpdate()
+        // this.shouldComponentUpdate()
     }
 
     return (
@@ -94,7 +94,7 @@ const Sidebar = ({ children, setSearch }) => {
                                             :
                                             <h3>Nama User</h3>
                                     }
-                                    <p className="username uname-cta">@username</p>
+                                    <p className="username uname-cta">@{session.username}</p>
                                 </div>
                                 <FontAwesomeIcon icon={faEllipsis} />
                             </section>
@@ -107,7 +107,6 @@ const Sidebar = ({ children, setSearch }) => {
                             </Overlay>
                         </div> :
                         ''
-
                     }
                 </div>
             </aside>
