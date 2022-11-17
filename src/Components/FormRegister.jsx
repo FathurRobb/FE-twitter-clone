@@ -92,7 +92,7 @@ const FormRegister = () => {
             <form onSubmit={handleSignin}>
                 <input type="text" name="username" placeholder='Username' id="" onChange={handleChangeUsername} required/>
                 <input type="text" name="name" value={name} onChange={handleChangeName}  placeholder='Name' id="" required/>
-                <input type="email" name="email" placeholder='Email' id="" required/>
+                <input type="email" name="email" placeholder='Email' id="" onChange={handleChangeEmail} required/>
                 <input type="password" name="password" value={password} onChange={handleChangePassword} onBlur={validatePassword} placeholder='password' id="" required/>
                 <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChangeConfirmPassword} onBlur={validatePassword} id="" placeholder='Confirm Password' required/>
                 {error.confirmPassword && <span className='err text-danger'>{error.confirmPassword}</span>}
