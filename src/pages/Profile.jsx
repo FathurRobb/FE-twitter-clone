@@ -62,8 +62,14 @@ const Profile = () => {
                 </section>
                 <button onClick={handleShow} className="btn-tw btn-edit-profile">Edit Profile</button>
             </section>
-            <section className="user-menu">
+            {/* <section className="user-menu">
                 <p>Tweets</p>
+            </section> */}
+            <section className="notif-menu">
+                <div>Tweet</div>
+                <div>Tweets & replies</div>
+                <div>Media</div>
+                <div>Likes</div>
             </section>
             <section className="user-tweets">
                 {isLoading ?

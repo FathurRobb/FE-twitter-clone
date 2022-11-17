@@ -8,6 +8,7 @@
 .notif-menu div{ 
     color: rgba(160, 160, 160, 0.467);
     padding: 0.5rem 3rem;
+    white-space: nowrap;
 }
 
 .notif-menu div:hover{
