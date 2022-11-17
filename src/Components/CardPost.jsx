@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deletePost } from "../redux/modules/posts";
 import { cancelLikes, createLikes, getLikes } from "../redux/modules/likes";
+import Avatar from "react-avatar";
 
 const CardPost = ({post}) => {
     const navigate = useNavigate()
@@ -48,7 +49,8 @@ const CardPost = ({post}) => {
 
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
-            <p>{post.name}<span className="username"> @{post.username}</span></p>
+            <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='40px' />
+            {post.name}<span className="username"> @{post.username}</span>
             <p onClick={()=> toDetailPost(post.id)}>
                 {post.post}
             </p>

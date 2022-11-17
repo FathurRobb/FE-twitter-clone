@@ -27,22 +27,22 @@
       "id": 1,
       "name": "Ilham Fathur Robbani",
       "email": "ilham@gmail.com",
-      "username": "ilhammm",
-      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS",
+      "username": "ilhammm"
     },
     {
       "id": 2,
       "name": "Ahmad Hasan Ali",
       "email": "hasan@gmail.com",
-      "username": "aliiii",
-      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS",
+      "username": "hasanSkuy"
     },
     {
       "id": 3,
-      "name": "Khairunnisa",
+      "name": "Khoirunnisa",
       "email": "nisa@gmail.com",
-      "username": "khairunnisaas",
-      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS",
+      "username": "khairunnisaas"
     }
   ],
   "comments": [],

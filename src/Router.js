@@ -8,6 +8,7 @@ import Messages from "./pages/Messages";
 import Lists from "./pages/Lists";
 import Explore from "./pages/Explore";
 import Notification from "./pages/Notification";
+import Bookmarks from "./pages/Bookmarks";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/post/:id" element={<DetailPost />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/bookmarks" element={<Bookmarks />} />
         <Route exact path='/login' element={<LoginPage />} />
         <Route exact path='/register' element={<RegisterPage />} />
         <Route exact path="/messages" element={<Messages />} />

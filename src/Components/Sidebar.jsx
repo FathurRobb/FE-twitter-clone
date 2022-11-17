@@ -1,15 +1,17 @@
-import { faBell, faBookmark, faEnvelope, faRectangleList, faUser } from "@fortawesome/free-regular-svg-icons";
-import { faEllipsis, faHashtag, faHome, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faBookmark, faEnvelope, faRectangleList, faUser, faUserCircle } from "@fortawesome/free-regular-svg-icons";
+import { faCommenting, faEllipsis, faHashtag, faHome, faRightFromBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState } from "react";
-import { Overlay, Tooltip } from "react-bootstrap";
+import { ButtonGroup, Dropdown, DropdownButton, Overlay, Tooltip } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import LogoTW from '../assets/twitter-logo-dark.png'
 
 
 const Sidebar = ({ children, setSearch }) => {
     const [show, setShow] = useState(false);
+    const [showMore, setShowMore] = useState(false);
     const target = useRef(null);
+    const more = useRef(null)
 
     const navigate = useNavigate();
 
@@ -31,56 +33,84 @@ const Sidebar = ({ children, setSearch }) => {
                         </section>
                         {
                             session ?
-                            <section className="menu">
-                                <ul>
-                                    <li><Link to='/'>
-                                        <FontAwesomeIcon icon={faHome} />
-                                        <span>Home</span>
-                                    </Link></li>
-                                    <li><Link to='/explore'>
-                                        <FontAwesomeIcon icon={faHashtag} />
-                                        <span>Explore</span>
-                                    </Link></li>
-                                    <li><Link to='/notifications'>
-                                        <FontAwesomeIcon icon={faBell} />
-                                        <span>Notifications</span>
-                                    </Link></li>
-                                    <li><Link to='/messages'>
-                                        <FontAwesomeIcon icon={faEnvelope} />
-                                        <span>Messages</span>
-                                    </Link></li>
-                                    <li><Link to='#'>
-                                        <FontAwesomeIcon icon={faBookmark} />
-                                        <span>Bookmarks</span>
-                                    </Link></li>
-                                    <li><Link to='/lists'>
-                                        <FontAwesomeIcon icon={faRectangleList} />
-                                        <span>Lists</span>
-                                    </Link></li>
-                                    <li><Link to='/profile'>
-                                        <FontAwesomeIcon icon={faUser} />
-                                        <span>Profile</span>
-                                    </Link></li>
-                                    <li>
-                                        <FontAwesomeIcon icon={faEllipsis} />
-                                        <span>More</span>
-                                    </li>
-                                </ul>
-                                <button className="btn-tw btn-sidebar">Tweet</button>
-                            </section> :
-                            <section className="menu">
-                            <ul>
-                                <li><Link to='/'>
-                                    <FontAwesomeIcon icon={faHome} />
-                                    <span>Home</span>
-                                </Link></li>
-                                <li><Link to='#'>
-                                    <FontAwesomeIcon icon={faHashtag} />
-                                    <span>Explore</span>
-                                </Link></li>
-                            </ul>
-                            {/* <button className="btn-tw btn-sidebar logout"><Link className="logout" to={'/login'}>Login</Link></button> */}
-                        </section>
+                                <section className="menu">
+                                    <ul>
+                                        <li><Link to='/'>
+                                            <FontAwesomeIcon icon={faHome} />
+                                            <span>Home</span>
+                                        </Link></li>
+                                        <li><Link to='/explore'>
+                                            <FontAwesomeIcon icon={faHashtag} />
+                                            <span>Explore</span>
+                                        </Link></li>
+                                        <li><Link to='/notifications'>
+                                            <FontAwesomeIcon icon={faBell} />
+                                            <span>Notifications</span>
+                                        </Link></li>
+                                        <li><Link to='/messages'>
+                                            <FontAwesomeIcon icon={faEnvelope} />
+                                            <span>Messages</span>
+                                        </Link></li>
+                                        <li><Link to='/bookmarks'>
+                                            <FontAwesomeIcon icon={faBookmark} />
+                                            <span>Bookmarks</span>
+                                        </Link></li>
+                                        <li><Link to='/lists'>
+                                            <FontAwesomeIcon icon={faRectangleList} />
+                                            <span>Lists</span>
+                                        </Link></li>
+                                        <li><Link to='/profile'>
+                                            <FontAwesomeIcon icon={faUser} />
+                                            <span>Profile</span>
+                                        </Link></li>
+                                        <li ref={more} onClick={() => setShowMore(!showMore)}>
+                                            <FontAwesomeIcon icon={faEllipsis} />
+                                            <span>More</span>
+                                        </li>
+                                        <Overlay className='overlay-popup' target={more.current} show={showMore} placement="top">
+                                            <Tooltip className='tooltip-popup' id="overlay-example">
+                                                <div><FontAwesomeIcon icon={faCommenting} /> Topics </div>
+                                                <div><FontAwesomeIcon icon={faUserPlus} /> Twitter Circle </div>
+                                                <div><hr /> </div>
+                                                <div>
+                                                    <DropdownButton id={'more-button'} title='Creator Studio'>
+                                                        <Dropdown.ItemText>Moments</Dropdown.ItemText>
+                                                        <Dropdown.ItemText>Newsletters</Dropdown.ItemText>
+                                                        <Dropdown.ItemText>Analytics</Dropdown.ItemText>
+                                                    </DropdownButton>
+                                                </div>
+                                                <div>
+                                                    <DropdownButton id={'more-button'} title='Professional Tools'>
+                                                        <Dropdown.ItemText>Moments</Dropdown.ItemText>
+                                                        <Dropdown.ItemText>Newsletters</Dropdown.ItemText>
+                                                        <Dropdown.ItemText>Analytics</Dropdown.ItemText>
+                                                    </DropdownButton>
+                                                </div>
+                                                <div>
+                                                    <DropdownButton id={'more-button'} title='Settings and Support'>
+                                                        <Dropdown.ItemText>Moments</Dropdown.ItemText>
+                                                        <Dropdown.ItemText>Newsletters</Dropdown.ItemText>
+                                                        <Dropdown.ItemText>Analytics</Dropdown.ItemText>
+                                                    </DropdownButton>
+                                                </div>
+                                            </Tooltip>
+                                        </Overlay>
+                                    </ul>
+                                    <button className="btn-tw btn-sidebar">Tweet</button>
+                                </section> :
+                                <section className="menu">
+                                    <ul>
+                                        <li><Link to='/'>
+                                            <FontAwesomeIcon icon={faHome} />
+                                            <span>Home</span>
+                                        </Link></li>
+                                        <li><Link to='#'>
+                                            <FontAwesomeIcon icon={faHashtag} />
+                                            <span>Explore</span>
+                                        </Link></li>
+                                    </ul>
+                                    {/* <button className="btn-tw btn-sidebar logout"><Link className="logout" to={'/login'}>Login</Link></button> */}
+                                </section>
                         }
                     </div>
                     {

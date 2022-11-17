@@ -11,6 +11,7 @@ import { getComments, createComment, deleteComment } from "../redux/modules/comm
 import useInput from "../hooks/useInput";
 import ButtonAction from "../Components/ButtonAction";
 import { getPostsByID } from "../redux/modules/posts";
+import Avatar from "react-avatar";
 const DetailPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -31,7 +32,7 @@ const DetailPost = () => {
     }
 
     const makeComment = () => {
-        dispatch(createComment({ body: comment, postId: +id, userId: session.id, userName: session.name }))
+        dispatch(createComment({ body: comment, postId: +id, userId: session.id, userName: session.name, username: session.username }))
         setComment('')
     }
 
@@ -63,7 +64,9 @@ const DetailPost = () => {
                         <div>
                             <section className="my-4 pb-3 px-3">
                                 <p className="detail-post pb-3 px-3">
-                                    {post ? post.post : ''}
+                                    <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='40px' />
+                                    <span> {post.name}<span className="username">@{post.username}</span></span>
+                                    <p>{post ? post.post : ''}</p>
                                 </p>
                                 <div className="like-rt-reply detail-post-cta">
                                     <FontAwesomeIcon className="icon" icon={faComment} />
@@ -89,7 +92,8 @@ const DetailPost = () => {
                             <section className="px-3">
                                 {comments.map(comment => (
                                     <section className="card-tweet" style={{ cursor: 'pointer' }} key={comment.id}>
-                                        <p>{comment.userName}<span className="username"> @username</span></p>
+                                        <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='40px' />
+                                        <span> {comment.userName}<span className="username"> @{comment.username}</span></span>
                                         <p>{comment.body}</p>
                                         <div className="like-rt-reply">
                                             <FontAwesomeIcon className="icon" icon={faComment} />

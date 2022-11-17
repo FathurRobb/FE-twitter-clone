@@ -40,7 +40,7 @@ const Profile = () => {
     }
 
     const patchName = async () => {
-        await axios.patch(url+'users/'+session.id, { name: name });
+        await axios.patch(url+'users/'+session.id, { name: name, username: username });
         const user = await axios.get(`${url}users?email=${session.email}`)
         sessionStorage.setItem('data_user', JSON.stringify(user.data[0]))
         dispatch(getPostsByUserID(session.id));
