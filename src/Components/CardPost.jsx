@@ -49,9 +49,9 @@ const CardPost = ({post}) => {
 
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
-            <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='40px' />
+            <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='40px' style={{marginRight: '10px'}}/>
             {post.name}<span className="username"> @{post.username}</span>
-            <p onClick={()=> toDetailPost(post.id)}>
+            <p style={{marginLeft: '50px'}} onClick={()=> toDetailPost(post.id)}>
                 {post.post}
             </p>
             <div className="like-rt-reply">

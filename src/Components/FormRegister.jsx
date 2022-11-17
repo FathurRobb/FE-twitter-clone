@@ -90,23 +90,30 @@ const FormRegister = () => {
             <h2>Create Your Account</h2>
             {alertEmail}
             <form onSubmit={handleSignin}>
-                <input type="text" name="username" placeholder='Username' id="" onChange={handleChangeUsername} />
-                <input type="text" name="name" value={name} onChange={handleChangeName}  placeholder='Name' id="" />
-                <input type="email" name="email" placeholder='Email' id="" />
-                <input type="password" name="password" value={password} onChange={handleChangePassword} onBlur={validatePassword} placeholder='password' id="" />
-                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChangeConfirmPassword} onBlur={validatePassword} id="" placeholder='Confirm Password' />
+                <input type="text" name="username" placeholder='Username' id="" onChange={handleChangeUsername} required/>
+                <input type="text" name="name" value={name} onChange={handleChangeName}  placeholder='Name' id="" required/>
+                <input type="email" name="email" placeholder='Email' id="" required/>
+                <input type="password" name="password" value={password} onChange={handleChangePassword} onBlur={validatePassword} placeholder='password' id="" required/>
+                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChangeConfirmPassword} onBlur={validatePassword} id="" placeholder='Confirm Password' required/>
                 {error.confirmPassword && <span className='err text-danger'>{error.confirmPassword}</span>}
-                <button className='btn-tw mt-2'>Sign Up</button>
+                {
+                    error.confirmPassword !== "" ?
+                        <button className='btn-tw mt-2' disabled>Sign Up</button>
+                        :
+                        <button className='btn-tw mt-2'>Sign Up</button>
+                }
+
+
                 <p className="mt-3">Already have account? <Link to={'/login'}>Login</Link></p>
             </form>
-            <div className="d-grid gap-2">
+            {/* <div className="d-grid gap-2">
                 {
                     error.confirmPassword !== "" ?
                         <ButtonAction variant={'outline-dark'} disabled={error} text={'Sign In'}/>
                     :
                         <ButtonAction variant={'outline-dark'} text={'Sign In'}/>
                 }
-            </div>
+            </div> */}
         </section>
         // <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
         //     <h1 className='text-center mb-3'>Register Your Account</h1>
