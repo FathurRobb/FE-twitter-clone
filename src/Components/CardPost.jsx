@@ -1,32 +1,78 @@
 import { faComment, faHeart, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faRetweet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { Card } from "react-bootstrap";
+import CardHeader from "react-bootstrap/esm/CardHeader";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { deletePost } from "../redux/modules/posts";
+import { cancelLikes, createLikes, getLikes } from "../redux/modules/likes";
 
 const CardPost = ({post}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    
     const toDetailPost = (postId) => {
         navigate(`/post/${postId}`)
     }
 
+    const removePost = (postId) => {
+        dispatch(deletePost({ postId: postId, userId: post.userId }))
+    }
+
     const dataUser = JSON.parse(sessionStorage.getItem('data_user'))
+
+    useEffect(() => {
+        if(dataUser){
+            dispatch(getLikes(+dataUser.id))   
+        } 
+    }, [dispatch])
+
+    const { likes } = useSelector(state => state.likes)
+    // const { countLikes } = useSelector(state => state.likes)
+    // console.log(likes)
+
+    let giveLike;
+    let undoLike;
+    if(dataUser) {
+        giveLike = (postId) => {
+            // console.log(postId)
+            dispatch(createLikes({ postId: postId, userId: +dataUser.id }))
+        }
+        undoLike = (id) => {
+            // console.log(id)
+            dispatch(cancelLikes({ id: +id}))
+        }
+    }
 
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
-            <p>{post.name}<span className="username"> @username</span></p>
+            <p>{post.name}<span className="username"> @{post.username}</span></p>
             <p onClick={()=> toDetailPost(post.id)}>
                 {post.post}
             </p>
             <div className="like-rt-reply">
                 <FontAwesomeIcon className="icon" icon={faComment} />
                 <FontAwesomeIcon className="icon" icon={faRetweet} />
-                <FontAwesomeIcon className="icon" icon={faHeart} />
                 {
-                    dataUser ?
-                    post.userId === dataUser.id ? <FontAwesomeIcon className="icon" icon={faTrashCan} /> : '' :
-                    ''
+                    dataUser ? 
+                        (likes.filter(like => like.postId === +post.id)).length > 0 ?
+                            likes.filter(like => like.postId === +post.id)
+                                .map(like => 
+                                    like.postId === +post.id ?
+                                        <FontAwesomeIcon key={like.id} className="icon" icon={faHeart} onClick={() => undoLike(like.id)} style={{color: 'pink'}} />
+                                    : ''
+                                )
+                            // console.log("sudah LIKE", likes)
+                            :
+                            <FontAwesomeIcon className="icon" icon={faHeart} onClick={() => giveLike(+post.id)}/>
+                            // console.log(post.id,"belum di like")
+                        :
+                        <FontAwesomeIcon className="icon" icon={faHeart} />
+                }
+                {
+                    dataUser&&  post.userId === dataUser.id ? <FontAwesomeIcon className="icon" onClick={()=>removePost(post.id)} icon={faTrashCan} /> : ''
                 }
             </div>
 

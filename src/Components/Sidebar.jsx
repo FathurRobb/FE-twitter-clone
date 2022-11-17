@@ -17,7 +17,8 @@ const Sidebar = ({ children, setSearch }) => {
 
     const logout = () => {
         sessionStorage.clear()
-        this.shouldComponentUpdate()
+        navigate('/')
+        // this.shouldComponentUpdate()
     }
 
     return (
@@ -44,7 +45,7 @@ const Sidebar = ({ children, setSearch }) => {
                                         <FontAwesomeIcon icon={faBell} />
                                         <span>Notifications</span>
                                     </Link></li>
-                                    <li><Link to='#'>
+                                    <li><Link to='/messages'>
                                         <FontAwesomeIcon icon={faEnvelope} />
                                         <span>Messages</span>
                                     </Link></li>
@@ -52,7 +53,7 @@ const Sidebar = ({ children, setSearch }) => {
                                         <FontAwesomeIcon icon={faBookmark} />
                                         <span>Bookmarks</span>
                                     </Link></li>
-                                    <li><Link to='#'>
+                                    <li><Link to='/lists'>
                                         <FontAwesomeIcon icon={faRectangleList} />
                                         <span>Lists</span>
                                     </Link></li>
@@ -78,7 +79,7 @@ const Sidebar = ({ children, setSearch }) => {
                                     <span>Explore</span>
                                 </Link></li>
                             </ul>
-                            <button className="btn-tw btn-sidebar logout"><Link className="logout" to={'/login'}>Login</Link></button>
+                            {/* <button className="btn-tw btn-sidebar logout"><Link className="logout" to={'/login'}>Login</Link></button> */}
                         </section>
                         }
                     </div>
@@ -93,20 +94,19 @@ const Sidebar = ({ children, setSearch }) => {
                                             :
                                             <h3>Nama User</h3>
                                     }
-                                    <p className="username uname-cta">@username</p>
+                                    <p className="username uname-cta">@{session.username}</p>
                                 </div>
                                 <FontAwesomeIcon icon={faEllipsis} />
                             </section>
                             <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
                                 {(props) => (
                                     <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
-                                        <button><Link onClick={logout} to={'/'} className="logout"> Logout <span>@username</span></Link></button>
+                                        <button style={{border: 'none'}} onClick={logout}>Logout <span>@username</span></button>
                                     </Tooltip>
                                 )}
                             </Overlay>
                         </div> :
                         ''
-
                     }
                 </div>
             </aside>

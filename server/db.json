@@ -7,10 +7,16 @@
       "id": 2
     },
     {
-      "post": "Test",
-      "userId": 0,
-      "name": "Test",
-      "id": 3
+      "post": "tes like",
+      "userId": 2,
+      "name": "Ahmad Hasan Ali",
+      "id": 4
+    },
+    {
+      "post": "bisa tidak ya ?",
+      "userId": 2,
+      "name": "Ahmad Hasan Ali",
+      "id": 5
     }
   ],
   "users": [
@@ -21,16 +27,16 @@
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     },
     {
-        "id": 2,
-        "name": "Ahmad Hasan Ali",
-        "email": "hasan@gmail.com",
-        "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+      "id": 2,
+      "name": "Ahmad Hasan Ali",
+      "email": "hasan@gmail.com",
+      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     },
     {
-        "id": 3,
-        "name": "Khoirunnisa",
-        "email": "nisa@gmail.com",
-        "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
+      "id": 3,
+      "name": "Khoirunnisa",
+      "email": "nisa@gmail.com",
+      "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     }
   ],
   "comments": [
@@ -38,6 +44,53 @@
       "body": "Nice Post",
       "postId": 2,
       "id": 1
+    }
+  ],
+  "likes": [
+    {
+      "postId": 2,
+      "userId": 2,
+      "id": 4
+    },
+    {
+      "postId": 2,
+      "userId": 2,
+      "id": 21
+    },
+    {
+      "postId": 4,
+      "userId": 2,
+      "id": 50
+    },
+    {
+      "postId": 2,
+      "userId": 2,
+      "id": 52
+    },
+    {
+      "postId": 2,
+      "userId": 2,
+      "id": 53
+    },
+    {
+      "postId": 2,
+      "userId": 2,
+      "id": 54
+    },
+    {
+      "postId": 2,
+      "userId": 3,
+      "id": 55
+    },
+    {
+      "postId": 5,
+      "userId": 1,
+      "id": 56
+    },
+    {
+      "postId": 5,
+      "userId": 3,
+      "id": 57
     }
   ]
 }
