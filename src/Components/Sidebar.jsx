@@ -37,11 +37,11 @@ const Sidebar = ({ children, setSearch }) => {
                                         <FontAwesomeIcon icon={faHome} />
                                         <span>Home</span>
                                     </Link></li>
-                                    <li><Link to='#'>
+                                    <li><Link to='/explore'>
                                         <FontAwesomeIcon icon={faHashtag} />
                                         <span>Explore</span>
                                     </Link></li>
-                                    <li><Link to='#'>
+                                    <li><Link to='/notifications'>
                                         <FontAwesomeIcon icon={faBell} />
                                         <span>Notifications</span>
                                     </Link></li>

@@ -6,6 +6,8 @@ import RegisterPage from "./pages/RegisterPage";
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
 import Lists from "./pages/Lists";
+import Explore from "./pages/Explore";
+import Notification from "./pages/Notification";
 
 const Router = () => {
   return (
@@ -18,6 +20,8 @@ const Router = () => {
         <Route exact path='/register' element={<RegisterPage />} />
         <Route exact path="/messages" element={<Messages />} />
         <Route exact path="/lists" element={<Lists />} />
+        <Route exact path="/explore" element={<Explore />} />
+        <Route exact path="/notifications" element={<Notification />} />
       </Routes>
     </BrowserRouter>
   );
