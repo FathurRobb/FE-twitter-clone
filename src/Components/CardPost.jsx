@@ -1,13 +1,12 @@
 import { faComment, faHeart, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faRetweet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Card } from "react-bootstrap";
-import CardHeader from "react-bootstrap/esm/CardHeader";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const CardPost = ({post}) => {
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
     const toDetailPost = (postId) => {
         navigate(`/post/${postId}`)
     }
@@ -17,7 +16,6 @@ const CardPost = ({post}) => {
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
             <p>{post.name}<span className="username"> @username</span></p>
-            {console.log(post)}
             <p onClick={()=> toDetailPost(post.id)}>
                 {post.post}
             </p>
@@ -26,7 +24,9 @@ const CardPost = ({post}) => {
                 <FontAwesomeIcon className="icon" icon={faRetweet} />
                 <FontAwesomeIcon className="icon" icon={faHeart} />
                 {
-                    post.userId === dataUser.id ? <FontAwesomeIcon className="icon" icon={faTrashCan} /> : ''
+                    dataUser ?
+                    post.userId === dataUser.id ? <FontAwesomeIcon className="icon" icon={faTrashCan} /> : '' :
+                    ''
                 }
             </div>
 
