@@ -101,7 +101,7 @@ const Sidebar = ({ children, setSearch }) => {
                             <Overlay className='overlay-popup' target={target.current} show={show} placement="top">
                                 {(props) => (
                                     <Tooltip className='tooltip-popup' id="overlay-example" {...props}>
-                                        <button style={{border: 'none'}} onClick={logout}>Logout <span>@username</span></button>
+                                        <button style={{border: 'none'}} onClick={logout}>Logout <span>@{session.username}</span></button>
                                     </Tooltip>
                                 )}
                             </Overlay>

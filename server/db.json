@@ -1,22 +1,25 @@
 {
   "posts": [
     {
-      "post": "Test create post",
+      "post": "halo",
+      "userId": 3,
+      "name": "Khairunnisa",
+      "username": "khairunnisaas",
+      "id": 6
+    },
+    {
+      "post": "test create post",
       "userId": 1,
       "name": "Ilham Fathur Robbani",
-      "id": 2
+      "username": "ilhammm",
+      "id": 7
     },
     {
-      "post": "tes like",
+      "post": "bisa tidak ya?",
       "userId": 2,
       "name": "Ahmad Hasan Ali",
-      "id": 4
-    },
-    {
-      "post": "bisa tidak ya ?",
-      "userId": 2,
-      "name": "Ahmad Hasan Ali",
-      "id": 5
+      "username": "aliiii",
+      "id": 8
     }
   ],
   "users": [
@@ -24,73 +27,24 @@
       "id": 1,
       "name": "Ilham Fathur Robbani",
       "email": "ilham@gmail.com",
+      "username": "ilhammm",
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     },
     {
       "id": 2,
       "name": "Ahmad Hasan Ali",
       "email": "hasan@gmail.com",
+      "username": "aliiii",
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     },
     {
       "id": 3,
-      "name": "Khoirunnisa",
+      "name": "Khairunnisa",
       "email": "nisa@gmail.com",
+      "username": "khairunnisaas",
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS"
     }
   ],
-  "comments": [
-    {
-      "body": "Nice Post",
-      "postId": 2,
-      "id": 1
-    }
-  ],
-  "likes": [
-    {
-      "postId": 2,
-      "userId": 2,
-      "id": 4
-    },
-    {
-      "postId": 2,
-      "userId": 2,
-      "id": 21
-    },
-    {
-      "postId": 4,
-      "userId": 2,
-      "id": 50
-    },
-    {
-      "postId": 2,
-      "userId": 2,
-      "id": 52
-    },
-    {
-      "postId": 2,
-      "userId": 2,
-      "id": 53
-    },
-    {
-      "postId": 2,
-      "userId": 2,
-      "id": 54
-    },
-    {
-      "postId": 2,
-      "userId": 3,
-      "id": 55
-    },
-    {
-      "postId": 5,
-      "userId": 1,
-      "id": 56
-    },
-    {
-      "postId": 5,
-      "userId": 3,
-      "id": 57
-    }
-  ]
+  "comments": [],
+  "likes": []
 }

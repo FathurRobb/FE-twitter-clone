@@ -33,6 +33,7 @@ const FormLogin = () => {
         alertPassword = <AlertAction variant={'danger'} message={'Wrong Password'} onClose={() => setshowAlertPassword(false)} />
     }
     const getUsers = async () => {
+        console.log(rootUrl)
         const checkEmail = await axios.get(`${rootUrl}?email=${form.email}`);
         if (checkEmail.data.length > 0) {
             const checkPassword = bcrypt.compareSync(form.password, checkEmail.data[0].password)
