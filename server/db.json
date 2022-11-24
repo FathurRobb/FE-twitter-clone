@@ -22,10 +22,10 @@
       "id": 8
     },
     {
-      "post": "heheh",
-      "userId": 7,
-      "name": "Soni Wakwaw",
-      "username": "wakwaw",
+      "post": "asdw",
+      "userId": 2,
+      "name": "Ahmad Hasan Ali",
+      "username": "hasanSkuy",
       "id": 9
     }
   ],
@@ -50,45 +50,48 @@
       "email": "nisa@gmail.com",
       "password": "$2a$12$HkYP4JYZM7nmJPMaSGTQ4.RI5LhbqqIMhUYtdlZH35s9/PRZtQtqS",
       "username": "khairunnisaas"
-    },
-    {
-      "name": "John Doe",
-      "username": "momomo",
-      "email": "",
-      "password": "$2a$10$hjFR.itYs05KNxI1FoBQv.OcYsNy1BttvtaQ3p9dg/pJw3Ctt.16e",
-      "id": 4
-    },
-    {
-      "name": "test tes",
-      "username": "testing",
-      "email": "testwo@gmail.com",
-      "password": "$2a$10$44csTC7Nb1uhz5bHVy5GROU/IdoKBSq5Qala9FwA4Ioo64Dee1Lg2",
-      "id": 5
-    },
-    {
-      "name": "Chris John",
-      "username": "holaho",
-      "email": "chirs@gmail.com",
-      "password": "$2a$10$tV1nErJ6Qu8quO1oB4YC.OiYpeZv1iv8E9mvXoHNDH0IYyeatKJLS",
-      "id": 6
-    },
-    {
-      "name": "Soni Kopling",
-      "username": "wadidaw",
-      "email": "soni@gmail.com",
-      "password": "$2a$10$DOBsFlpjXNE0ooiH0dTCVu4EpN608tyQfl72mkuCIGwWXscYwy0fu",
-      "id": 7
     }
   ],
   "comments": [
     {
-      "body": "halo nisa",
-      "postId": 6,
-      "userId": 7,
-      "userName": "Soni Wakwaw",
-      "username": "wakwaw",
+      "body": "asdw",
+      "postId": 8,
+      "userId": 2,
+      "userName": "Ahmad Hasan Ali",
+      "username": "hasanSkuy",
       "id": 1
     }
   ],
-  "likes": []
+  "likes": [
+    {
+      "postId": 6,
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "postId": 8,
+      "userId": 2,
+      "id": 14
+    },
+    {
+      "postId": 7,
+      "userId": 2,
+      "id": 15
+    },
+    {
+      "postId": 6,
+      "userId": 2,
+      "id": 16
+    },
+    {
+      "postId": 8,
+      "userId": 2,
+      "id": 18
+    },
+    {
+      "postId": 8,
+      "userId": 2,
+      "id": 22
+    }
+  ]
 }
