@@ -1,10 +1,10 @@
 import { faBell, faBookmark, faEnvelope, faRectangleList, faUser, faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { faCommenting, faEllipsis, faHashtag, faHome, faRightFromBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCommenting, faEllipsis, faHashtag, faHome, faMagnifyingGlass, faRightFromBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState } from "react";
-import { ButtonGroup, Dropdown, DropdownButton, Overlay, Tooltip } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import LogoTW from '../assets/twitter-logo-dark.png'
+import { ButtonGroup, Dropdown, DropdownButton, InputGroup, Overlay, Tooltip, FormControl } from "react-bootstrap";
+import { Form, Link, useNavigate } from "react-router-dom";
+import LogoTW from '../assets/twitter-logo.png';
 
 
 const Sidebar = ({ children, setSearch }) => {

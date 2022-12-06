@@ -8,7 +8,7 @@
 .main-content{padding: 1rem 0;}
 
 header{
-    border-bottom: 0.1rem solid #5e5b5b;
+    border-bottom: 0.1rem solid #eff3f4;
     padding-bottom: 1rem;
 }
 
@@ -37,7 +37,7 @@ header div{
 
 .left-sidebar{
     padding: 1rem;
-    border-right: 0.1rem solid #5e5b5b;
+    border-right: 0.1rem solid #eff3f4;
     min-height: 100vh;
 }
 
@@ -72,7 +72,7 @@ header div{
 
 .menu li a{
     text-decoration: none;
-    color: #fafafa;
+    color: black;
 }
 
 .menu li:hover{ cursor: pointer;}
@@ -128,7 +128,7 @@ header div{
 
 .right-sidebar{
     padding: 0 1rem;
-    border-left: 0.1rem solid #5e5b5b;
+    border-left: 0.1rem solid #eff3f4;
     min-height: 100vh;
 }
 
@@ -137,16 +137,16 @@ header div{
     width: 100%;
     border-radius: 2rem;
     padding: 0.5rem 1rem;
-    background-color: #202327;
+    background-color: #eff3f4;
     border: none;
     outline: none;
-    color: #fafafa;
+    color: #536471;
 }
 
 .trending{
     margin-top: 1rem;
     padding: 1rem 1.5rem;
-    background-color: #16181C;
+    background-color: #f7f9f9;
     border-radius: 1em;
 }
 

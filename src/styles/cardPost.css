@@ -1,6 +1,6 @@
 .card-tweet{
     padding: 0.5rem 1.5rem;
-    border-bottom: 0.1rem solid #5e5b5b;
+    border-bottom: 0.1rem solid #eff3f4;
     padding-bottom: 1rem;
 }
 
@@ -9,6 +9,19 @@
 .like-rt-reply{
     display: flex;
     justify-content: space-around;
+    color: #536471;
+}
+
+.like-rt-reply .reply:hover {
+    color: blue;
+}
+
+.like-rt-reply .rt:hover {
+    color: green;
+}
+
+.like-rt-reply .like:hover {
+    color: pink;
 }
 
 .icon:hover{ cursor: pointer;}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardPost from '../Components/CardPost';
 import Sidebar from '../Components/Sidebar';
 import useInput from '../hooks/useInput';
-import { createPost, getPosts } from '../redux/modules/posts';
+import { createPost, getPosts } from '../redux/reducers/posts';
 import ButtonAction from '../Components/ButtonAction';
 import { useNavigate } from 'react-router-dom';
 

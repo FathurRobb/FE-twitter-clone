@@ -6,8 +6,8 @@ import { Card } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deletePost } from "../redux/modules/posts";
-import { cancelLikes, createLikes, getLikes } from "../redux/modules/likes";
+import { deletePost } from "../redux/reducers/posts";
+import { cancelLikes, createLikes, getLikes } from "../redux/reducers/likes";
 import Avatar from "react-avatar";
 
 const CardPost = ({post}) => {
@@ -49,29 +49,29 @@ const CardPost = ({post}) => {
 
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
-            <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Alii" round size='40px' style={{marginRight: '10px'}}/>
-            {post.name}<span className="username"> @{post.username}</span>
-            <p style={{marginLeft: '50px'}} onClick={()=> toDetailPost(post.id)}>
+            <Avatar color='gray' name={post.name} round size='35px' style={{marginRight: '10px', marginTop: '5px'}}/>
+            <b>{post.name}</b> <span className="username"> @{post.username}</span>
+            <p style={{marginLeft: '45px', marginTop: '-10px'}} onClick={()=> toDetailPost(post.id)}>
                 {post.post}
             </p>
             <div className="like-rt-reply">
-                <FontAwesomeIcon className="icon" icon={faComment} />
-                <FontAwesomeIcon className="icon" icon={faRetweet} />
+                <FontAwesomeIcon className="icon reply" icon={faComment} />
+                <FontAwesomeIcon className="icon rt" icon={faRetweet} />
                 {
                     dataUser ? 
                         (likes.filter(like => like.postId === +post.id)).length > 0 ?
                             likes.filter(like => like.postId === +post.id)
                                 .map(like => 
                                     like.postId === +post.id ?
-                                        <FontAwesomeIcon key={like.id} className="icon" icon={faHeart} onClick={() => undoLike(like.id)} style={{color: 'pink'}} />
+                                        <FontAwesomeIcon key={like.id} className="icon like" icon={faHeart} onClick={() => undoLike(like.id)} style={{color: 'pink'}} />
                                     : ''
                                 )
                             // console.log("sudah LIKE", likes)
                             :
-                            <FontAwesomeIcon className="icon" icon={faHeart} onClick={() => giveLike(+post.id)}/>
+                            <FontAwesomeIcon className="icon like" icon={faHeart} onClick={() => giveLike(+post.id)}/>
                             // console.log(post.id,"belum di like")
                         :
-                        <FontAwesomeIcon className="icon" icon={faHeart} />
+                        <FontAwesomeIcon className="icon like" icon={faHeart} />
                 }
                 {
                     dataUser&&  post.userId === dataUser.id ? <FontAwesomeIcon className="icon" onClick={()=>removePost(post.id)} icon={faTrashCan} /> : ''

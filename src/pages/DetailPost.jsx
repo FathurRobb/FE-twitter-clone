@@ -7,10 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getComments, createComment, deleteComment } from "../redux/modules/comments";
+import { getComments, createComment, deleteComment } from "../redux/reducers/comments";
 import useInput from "../hooks/useInput";
 import ButtonAction from "../Components/ButtonAction";
-import { getPostsByID } from "../redux/modules/posts";
+import { getPostsByID } from "../redux/reducers/posts";
 import Avatar from "react-avatar";
 const DetailPost = () => {
     const navigate = useNavigate()

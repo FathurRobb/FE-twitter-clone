@@ -1,7 +1,7 @@
 import Sidebar from "../Components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getPostsByUserID } from "../redux/modules/posts";
+import { getPostsByUserID } from "../redux/reducers/posts";
 import CardPost from "../Components/CardPost";
 import { Form, Modal } from "react-bootstrap";
 import ButtonAction from "../Components/ButtonAction";
