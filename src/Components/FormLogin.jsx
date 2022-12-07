@@ -60,14 +60,14 @@ const FormLogin = () => {
             <section className="logo mx-auto my-3">
                 <img src={LogoTW} alt="twitter logo" />
             </section>
-            <h2 className="text-center">Log in to Twitter</h2>
+            <h2 className="text-center" style={{color:'white'}}>Log in to Twitter</h2>
             {alertEmail}
             {alertPassword}
             <form onSubmit={handleLogin}>
                 <input type="email" placeholder="Enter Email" name="email" value={form.email} onChange={handleChange} required />
                 <input type="password" placeholder="Password" name="password" value={form.password} onChange={handleChange} required />
                 <button className='btn-tw mt-2'>Login</button>
-                <p className="mt-3">Don't have account? <Link to={'/register'}>Sign Up</Link></p>
+                <p className="mt-3" style={{color:'white'}}>Don't have account? <Link to={'/register'}>Sign Up</Link></p>
             </form>
         </section>
         // <Container className='w-50 mx-auto d-flex flex-column justify-content-center' style={{minHeight: '90vh'}}>
