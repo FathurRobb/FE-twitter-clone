@@ -47,12 +47,13 @@ const CardPost = ({post}) => {
         }
     }
 
+    console.log(post)
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
-            <Avatar color='gray' name={post.name} round size='35px' style={{marginRight: '10px', marginTop: '5px'}}/>
-            <b>{post.name}</b> <span className="username"> @{post.username}</span>
-            <p style={{marginLeft: '45px', marginTop: '-10px'}} onClick={()=> toDetailPost(post.id)}>
-                {post.post}
+            <Avatar color='gray' name={post.username} round size='35px' style={{marginRight: '10px', marginTop: '5px'}}/>
+            <b>{post.username}</b> <span className="username"> @{post.username}</span>
+            <p style={{marginLeft: '45px', marginTop: '-10px'}} onClick={()=> toDetailPost(post.postId)}>
+                {post.content}
             </p>
             <div className="like-rt-reply">
                 <FontAwesomeIcon className="icon reply" icon={faComment} />

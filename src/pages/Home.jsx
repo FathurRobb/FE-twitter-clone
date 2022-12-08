@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import axios from "axios";
 import { useState } from 'react';
 import { Container, Form, InputGroup, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,12 +9,13 @@ import useInput from '../hooks/useInput';
 import { createPost, getPosts } from '../redux/reducers/posts';
 import ButtonAction from '../Components/ButtonAction';
 import { useNavigate } from 'react-router-dom';
+import PostsService from '../services/PostsService';
 
 
 const Home = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch()
-    const { posts, isLoading } = useSelector(state => state.posts)
+    // const dispatch = useDispatch()
+    // const { posts, isLoading } = useSelector(state => state.posts)
     const [post, handlePostChange, setPost] = useInput();
     const [search, setSearch] = useState('')
 
@@ -26,15 +28,35 @@ const Home = () => {
     }
 
     const session = JSON.parse(sessionStorage.getItem("data_user"))
+    
 
-    const makePost = async () => {
-        dispatch(createPost({ post, userId: session.id, name: session.name, username: session.username }))
-        setPost('')
+    const tweet = {
+        content:post
     }
 
+    const [gettweet, setTweet] = useState([]);
+    const makePost = async () => { 
+        console.log(tweet)
+        PostsService.posts(tweet).then(response => {
+            console.log(response)
+            getAlldata()
+            setPost('')
+        }).catch(err => {
+            console.log("error")
+        });
+    }
+
+    const getAlldata = async () => {
+        PostsService.getAll().then(res => {
+            setTweet(res.data)
+        }).catch(err => {
+            console.log("error get data", err)
+        });
+    };
+
     useEffect(() => {
-        dispatch(getPosts());
-    }, [dispatch])
+        getAlldata()
+    },[])
 
     return (
         <React.Fragment>
@@ -50,16 +72,19 @@ const Home = () => {
                         maxLength={60}
                         value={post}
                         onChange={handlePostChange}
-                        disabled={!session}
+                        style={{color:'black'}}
+                        // disabled={!session}
                     />
                     <p className='ps-4'> {post.length} / 60</p>
                     <div><button className='btn-tw add-tweet' onClick={handleSubmit}>Tweet</button></div>
                 </header>
-                {!isLoading ? posts.filter(item => {
-                    return item.post.toLowerCase() === '' ? item.post : item.post.toLowerCase().includes(search.toLowerCase())
-                }).map(post => (
-                    <CardPost key={post.id} post={post} />
-                )) : <div>Loading....</div>}
+                {gettweet?.map((item) => {
+                    console.log(item)
+                    return(
+                        <CardPost key={item.postId} post={item}/>
+                    )
+                })}
+
             </Sidebar>    
             {
                 session ?
