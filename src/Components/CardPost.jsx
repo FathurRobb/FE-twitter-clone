@@ -51,7 +51,7 @@ const CardPost = ({post}) => {
     return (
         <section className="card-tweet" style={{ cursor: 'pointer' }}>
             <Avatar color='gray' name={post.username} round size='35px' style={{marginRight: '10px', marginTop: '5px'}}/>
-            <b>{post.username}</b> <span className="username"> @{post.username}</span>
+            <b>{post.username}</b> <span className="username"> @{post.username}</span> <span style={{fontSize: '15px'}}>{post.datetime}</span>
             <p style={{marginLeft: '45px', marginTop: '-10px'}} onClick={()=> toDetailPost(post.postId)}>
                 {post.content}
             </p>

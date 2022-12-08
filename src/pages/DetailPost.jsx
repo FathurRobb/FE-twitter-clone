@@ -14,6 +14,7 @@ import { getPostsByID } from "../redux/reducers/posts";
 import Avatar from "react-avatar";
 import { useState } from "react";
 import PostsService from "../services/PostsService";
+import '../../src/styles/detailPost.css';
 const DetailPost = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -81,9 +82,9 @@ const DetailPost = () => {
                         <div>
                             <section className="my-4 pb-3 px-3">
                                 <p className="detail-post pb-3 px-3">
-                                    <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='40px' />
-                                    <span> {getDetailTweet[0].userName}<span className="username">@{getDetailTweet[0].username}</span></span>
-                                    <p>{getDetailTweet ? getDetailTweet[0].content : ''}</p>
+                                    <Avatar color={Avatar.getRandomColor(['red', 'green', 'blue'])} name="Name" round size='60px' />
+                                    <span className="user-name"> {getDetailTweet[0].username} <span className="username">@{getDetailTweet[0].username}</span> <span style={{fontSize: '20px'}}>{getDetailTweet[0].datetime}</span></span>
+                                    <p className="text-detail">{getDetailTweet ? getDetailTweet[0].content : ''}</p>
                                 </p>
                                 <div className="like-rt-reply detail-post-cta">
                                     <FontAwesomeIcon className="icon" icon={faComment} />

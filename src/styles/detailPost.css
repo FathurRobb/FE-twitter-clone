@@ -13,3 +13,16 @@
     display: flex;
     border-bottom: 0.1rem solid #5e5b5b;
 }
+
+.text-detail{
+    font-size: 25px;
+    margin-top:10px;
+}
+
+.user-name{
+    font-size: 25px;
+}
+
+.btn-tw:disabled {
+    background-color: #5e5b5b;
+}

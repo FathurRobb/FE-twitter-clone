@@ -22,6 +22,7 @@ const Home = () => {
     const handleSubmit = event => {
         event.preventDefault();
         if (!post) {
+
             return;
         }
         makePost();
@@ -53,6 +54,7 @@ const Home = () => {
             console.log("error get data", err)
         });
     };
+    
 
     useEffect(() => {
         getAlldata()
@@ -75,11 +77,10 @@ const Home = () => {
                         style={{color:'black'}}
                         // disabled={!session}
                     />
-                    <p className='ps-4'> {post.length} / 60</p>
-                    <div><button className='btn-tw add-tweet' onClick={handleSubmit}>Tweet</button></div>
+                    <p className='ps-4'>{post.length} / 60</p>
+                    <div><button className='btn-tw add-tweet' onClick={handleSubmit} disabled={!post}>Tweet</button></div>
                 </header>
                 {gettweet?.map((item) => {
-                    console.log(item)
                     return(
                         <CardPost key={item.postId} post={item}/>
                     )
